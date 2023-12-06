@@ -1,0 +1,32 @@
+{
+	"compilerOptions": {
+		"moduleResolution": "node",
+		"esModuleInterop": true,
+		"allowSyntheticDefaultImports": true,
+		"strict": true,
+		"noImplicitAny": true,
+		"strictNullChecks": true,
+		"strictFunctionTypes": true,
+		"strictPropertyInitialization": true,
+		"target": "esnext",
+		"module": "CommonJS",
+		"declaration": true,
+		"allowJs": true,
+		"composite": true,
+		"sourceMap": true,
+		"inlineSources": true,
+		"experimentalDecorators": true,
+		"emitDecoratorMetadata": true,
+		"noUnusedLocals": true,
+		"noUnusedParameters": true
+	},
+	"ts-node": {
+		"compilerOptions": {
+			"module": "CommonJS"
+		}
+	},
+	"include": [
+		"platform",
+		"package.json"
+	]
+}
