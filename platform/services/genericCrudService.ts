@@ -10,7 +10,7 @@ export const USER_CONTEXT_TOKEN = new Token('USER_CONTEXT_TOKEN')
 export interface GenericCrudServiceInterface <CI , EI> {
 	getById(id: number): Promise<EI | null>;
 	getAll(): Promise<EI[]>;
-	getByQuery(query: any): Promise<EI[] | null>;
+	getByQuery(query: any): Promise<EI[]>;
 	create(payload: CI): Promise<EI>;
 	update(id: number, payload: Partial<EI>): Promise<number | undefined>;
 	delete(id: number): Promise<number | undefined>;
@@ -34,7 +34,7 @@ export class GenericCrudService<CI, EI extends ObjectLiteral > implements Generi
 		return await this.getDb().findAll()
 	}
 
-	getByQuery = async (query: any): Promise<EI[] | null> => {
+	getByQuery = async (query: any): Promise<EI[]> => {
 		logRequest(`Attempting to get users with query: ${JSON.stringify(query)}`)
 		return await this.getDb().findByQuery(query)
 	}
