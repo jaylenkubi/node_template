@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import { ExpressMiddlewareInterface, Middleware } from 'routing-controllers';
 import { Container, Token } from 'typedi';
 import crypto from 'crypto';
-import {logger} from "../shared/helpers/logger";
+import {logger} from "../helper/logger";
 
 export const TRANSACTION_ID = 'transaction-id';
 
@@ -25,7 +25,7 @@ export const getOrSetTransactionId = (request: any) => {
 
 @Middleware({ type: 'before', priority: 1000 })
 export class TransactionMiddleware implements ExpressMiddlewareInterface {
-	use(request: Request, response: Response, next: (err?: any) => any): void {
+	use(request: Request, _response: Response, next: (err?: any) => any): void {
 		logger.info(`HEADERS: ${JSON.stringify(request.headers)}`);
 		getOrSetTransactionId(request);
 		return next();

@@ -1,13 +1,28 @@
-import {createExpressServer, RoutingControllersOptions} from "routing-controllers";
-import * as passport from "passport";
+import {Action, createExpressServer, RoutingControllersOptions} from "routing-controllers";
+import passport from "passport";
 import {logger} from "./helper/logger";
 import {jwtStrategy} from "./config/next.passport";
 
-
+const jwt = {
+	secret: "secret",
+		accessExpirationMinutes: 30,
+		refreshExpirationDays: 30,
+		resetPasswordExpirationMinutes: "30m"
+}
 export const startServer = (options: RoutingControllersOptions, port: number) => {
 
 	const app = createExpressServer({
 		...options,
+		authorizationChecker: async (action: Action, roles: any[]) => {
+			let passportResult = await new Promise((resolve) => {
+				passport.authenticate('JWT', {session: false}, (err: any, user: any, info: any) => {
+					if(err || info) return resolve(false);
+					if(user) return resolve(true);
+					return resolve(false);
+				})(action.request, action.response, action.next);
+			});
+			return passportResult as boolean;
+		},
 	})
 
 	app.use(passport.initialize());

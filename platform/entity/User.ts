@@ -50,6 +50,7 @@ export class User {
 export class UserEntity extends Mixin(User, BaseDBEntity) {
 	@decorate(Exclude())
 	@decorate(IsEmpty())
+	// @ts-ignore
 	private _!: never
 }
 

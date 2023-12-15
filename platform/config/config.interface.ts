@@ -25,7 +25,6 @@ export type JwtConfig = {
 }
 
 export type Config = {
-	serviceName: string;
 	env: string;
 	jwt: JwtConfig;
 	typeOrm: TypeOrmConfig;

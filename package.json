@@ -4,7 +4,8 @@
 	"description": "",
 	"main": "index.js",
 	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1"
+		"start": "ts-node platform/index.ts",
+		"typeorm": "typeorm-ts-node-commonjs"
 	},
 	"keywords": [],
 	"author": "",
@@ -25,6 +26,8 @@
 		"routing-controllers": "^0.10.4",
 		"ts-mixer": "^6.0.3",
 		"ts-node": "^10.9.1",
+
+
 		"ts-node-dev": "^2.0.0",
 		"typedi": "^0.10.0",
 		"typeorm": "^0.3.17",

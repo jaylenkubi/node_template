@@ -1,10 +1,10 @@
 import {ExpressErrorMiddlewareInterface, Middleware} from "routing-controllers";
-import {logger} from "../shared/helpers/logger";
+import {logger} from "../helper/logger";
 
 
 @Middleware({type: "after", priority: 2})
 export class ErrorMiddleware implements ExpressErrorMiddlewareInterface{
-	error(error: any, request: any, response: any, next: (err?: any) => any): void {
+	error(error: any, _request: any, response: any, _next: (err?: any) => any): void {
 		const httpCode = error?.httpCode ?? error?.status ?? error?.reponse?.status ?? 500;
 		const message = error?.reponse.data.message ?? error?.message ?? "Generic error message";
 		const name = error?.reponse.statusText ?? error?.name ?? "AppError";
