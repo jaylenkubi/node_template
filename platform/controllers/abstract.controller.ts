@@ -48,6 +48,8 @@ export const buildCrudController = <CI, EI extends ObjectLiteral>(
 		@Get('/query')
 		@ResponseSchema(Entity, {isArray: true})
 		@OpenAPI({summary: `Get ${plural(entityName)} by query`, operationId: `getByQuery${capitalCase(entityName.trim())}`})
+		@UseBefore(aclMiddleware([{action: Action.QUERY, subject: subject}], rules))
+
 		async getByQuery(@QueryParams() query: QueryOptions<EI>, @Req() req: any): Promise<EI[]> {
 			return await getContextualEntityService<CI, EI>(entityName, Entity, req.headers[TRANSACTION_ID]).getByQuery(query);
 
@@ -57,6 +59,7 @@ export const buildCrudController = <CI, EI extends ObjectLiteral>(
 		@Get('/:id', {})
 		@ResponseSchema(Entity)
 		@OpenAPI({summary: `Get ${entityName} by id`, operationId: `getOne${capitalCase(entityName.trim())}`})
+		@UseBefore(aclMiddleware([{action: Action.GET_BY_ID, subject: subject}], rules))
 		async getOne(@Param('id') id: number, @Req() req: any): Promise<EI | null> {
 			return await getContextualEntityService<CI, EI>(entityName, Entity, req.headers[TRANSACTION_ID]).getById(id);
 		}
@@ -64,6 +67,7 @@ export const buildCrudController = <CI, EI extends ObjectLiteral>(
 		@Post('')
 		@ResponseSchema(Entity)
 		@OpenAPI({summary: `Create a ${entityName}`, operationId: `createOne${capitalCase(entityName.trim())}`})
+		@UseBefore(aclMiddleware([{action: Action.CREATE, subject: subject}], rules))
 		//@ts-ignore
 		async create(@Body() createBody: createClass, @Req() req: any): Promise<EI> {
 			return await getContextualEntityService<CI, EI>(entityName, Entity, req.headers[TRANSACTION_ID]).create(createBody);
@@ -72,6 +76,7 @@ export const buildCrudController = <CI, EI extends ObjectLiteral>(
 		@Put('/:id')
 		@ResponseSchema(() => Number)
 		@OpenAPI({summary: `Update a ${entityName}`, operationId: `updateOne${capitalCase(entityName.trim())}`})
+		@UseBefore(aclMiddleware([{action: Action.UPDATE, subject: subject}], rules))
 		async update(
 			@Param('id') id: number | string,
 			//@ts-ignore
@@ -88,6 +93,7 @@ export const buildCrudController = <CI, EI extends ObjectLiteral>(
 		@Delete('/:id')
 		@ResponseSchema(() => Number)
 		@OpenAPI({summary: `Remove a ${entityName}`, operationId: `removeOne${capitalCase(entityName.trim())}`})
+		@UseBefore(aclMiddleware([{action: Action.DELETE, subject: subject}], rules))
 		async remove(@Param('id') id: number, @Req() req: any): Promise<number | undefined> {
 			return await getContextualEntityService<CI, EI>(entityName, Entity, req.headers[TRANSACTION_ID]).delete(id);
 		}
