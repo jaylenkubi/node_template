@@ -1,10 +1,12 @@
-import { Request, Response } from 'express';
-import { ExpressMiddlewareInterface, UnauthorizedError } from 'routing-controllers';
-import { Container, Token } from 'typedi';
+import {Response} from 'express';
+import {ExpressMiddlewareInterface, UnauthorizedError} from 'routing-controllers';
+import {Container, Token} from 'typedi';
 import passport from "passport";
 import {extractTokenFromReq} from "../config/next.passport";
 import {logger} from "../helper/logger";
 import {TRANSACTION_ID} from "./transaction.middleware";
+import bcrypt from 'bcryptjs';
+
 
 export const MONO_AUTHENTICATED = 'MONO-authenticated';
 export const MONO_USER = 'mono-user';
@@ -37,7 +39,7 @@ export class AuthMiddleware implements ExpressMiddlewareInterface {
 			return next();
 		}
 		logger.info('External request, checking auth');
-		return passport.authenticate('JWT', { session: false })(request, response, next);
+		return passport.authenticate('JWT', {session: false})(request, response, next);
 	}
 }
 

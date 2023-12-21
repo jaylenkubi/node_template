@@ -26,7 +26,8 @@
 		}
 	},
 	"include": [
-		"platform",
-		"package.json"
-	]
+      "platform",
+      "package.json",
+      "node_modules/.pnpm/bcryptjs@2.4.3/node_modules/bcryptjs/src/bcrypt.js"
+    ]
 }
