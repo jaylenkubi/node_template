@@ -1,12 +1,13 @@
 import {Request} from "express";
 import {Strategy} from "passport-jwt";
-import {UserEntity, UserService} from "../entity/User";
+import {UserEntity, UserService} from "../entity/user-management/User";
 import {logger} from "../helper/logger";
 import {TRANSACTION_ID} from "../middlewares/transaction.middleware";
 import {NotFoundError, UnauthorizedError} from "routing-controllers";
 import {TokenInterface} from "../types/token.type";
 import {Container} from "typedi";
 import {encrypt} from "../utils/Encrpyt";
+import {THE_CUBE_USER_TOKEN} from "../middlewares/authentication.middleware";
 
 export const handleUserAuth = (user: UserEntity, payload: TokenInterface, next: Function, req: any) => {
 	if (!user) {
@@ -23,7 +24,7 @@ export const handleUserAuth = (user: UserEntity, payload: TokenInterface, next: 
 		const userString = JSON.stringify(enrichedUser);
 		const transactionId = req.headers[TRANSACTION_ID];
 		logger.info(`Passport Core - Setting sana user token to: ${userString} for transaction id: ${transactionId}`);
-		Container.of(transactionId).set('THE_CUBE_TOKEN', encrypt(userString));
+		Container.of(transactionId).set(THE_CUBE_USER_TOKEN, encrypt(userString));
 
 		return next(null, enrichedUser);
 	} else {

@@ -1,6 +1,4 @@
-import {UserEntity} from "../entity/User";
-import {decrypt} from "../utils/Encrpyt";
-import {MONO_USER} from "./authentication.middleware";
+import {UserEntity} from "../entity/user-management/User";
 import {RoutingControllerRole} from "../controllers/abstract.controller";
 import {ForbiddenError, UnauthorizedError} from "routing-controllers";
 import {logger} from "../helper/logger";
@@ -11,7 +9,7 @@ import {UserEntityType} from "../types/user.type";
 export const isObject = (a: any) => (!!a && a.constructor === Object) || (!!a && typeof a === 'object');
 
 export function getUser(request: any): UserEntity {
-	const user = request.headers[MONO_USER] ? JSON.parse(decrypt(request.headers[MONO_USER])) : request.user;
+	const user = /*request.headers[THE_CUBE_USER] ? JSON.parse(decrypt(request.headers[THE_CUBE_USER])) : */request.user;
 	if (user && !isObject(user)) {
 		return JSON.parse(user);
 	}

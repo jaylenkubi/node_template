@@ -1,15 +1,9 @@
 import "reflect-metadata";
-import {AppDataSource} from "./data-source"
-import {UserController} from "./controllers/UserController";
-import {startServer} from "./server";
-import {TransactionMiddleware} from "./middlewares/transaction.middleware";
-import {ErrorMiddleware} from "./middlewares/error.middleware";
+import {initializeConfig} from "./config/config";
+import {initServer} from "./config/appConfig";
 
-
-AppDataSource.initialize().then(async () => {
-	await startServer({
-		routePrefix: "/api",
-		controllers: [UserController],
-		middlewares: [TransactionMiddleware, ErrorMiddleware]
-	}, 3000)
-}).catch(error => console.log(error))
+initializeConfig().then(async (config) => {
+	await initServer(config)
+}).catch(error => {
+	throw error
+})

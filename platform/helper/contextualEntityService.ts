@@ -1,9 +1,10 @@
 import {BaseEntity, ObjectLiteral} from "typeorm";
-import {Container} from "typedi";
+import {Container, Token} from "typedi";
 import {logger} from "./logger";
 import {GenericCrudService, GenericCrudServiceInterface, USER_CONTEXT_TOKEN} from "../services/genericCrudService";
 import {REPO_CONTEXT_TOKEN} from "../adapters/relational.adapter";
 
+export const SYSTEM_TOKEN = new Token<string>('SYSTEM_TOKEN');
 
 export const getContextualEntityService = <CI, EI extends ObjectLiteral>(
 	entityName: string,
@@ -16,7 +17,6 @@ export const getContextualEntityService = <CI, EI extends ObjectLiteral>(
 			transactionId
 		})
 		.set(REPO_CONTEXT_TOKEN, {
-			// ...Container.of(transactionId).get<RepoRequestContext>(REPO_CONTEXT_TOKEN),
 			entityName,
 			entity: entityClass,
 			transactionId

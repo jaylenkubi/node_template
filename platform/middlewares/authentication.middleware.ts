@@ -7,12 +7,11 @@ import {logger} from "../helper/logger";
 import {TRANSACTION_ID} from "./transaction.middleware";
 import bcrypt from 'bcryptjs';
 
-
-export const MONO_AUTHENTICATED = 'MONO-authenticated';
-export const MONO_USER = 'mono-user';
+export const THE_CUBE_AUTHENTICATED = 'the-cube-authenticated';
+export const THE_CUBE_USER = 'the-cube-user';
 export const AUTH_TOKEN_ID = 'auth-token';
 export const AUTH_TOKEN = new Token<string>(AUTH_TOKEN_ID);
-export const MONO_USER_TOKEN = new Token<string>(MONO_USER);
+export const THE_CUBE_USER_TOKEN = new Token<string>(THE_CUBE_USER);
 
 export class AuthMiddleware implements ExpressMiddlewareInterface {
 	use(request: any, response: Response, next: (err?: any) => any): void {
@@ -27,17 +26,17 @@ export class AuthMiddleware implements ExpressMiddlewareInterface {
 
 		Container.of(transactionId).set(AUTH_TOKEN, token);
 
-		if (request.headers?.[MONO_USER]) {
-			const headerValue = request.headers?.[MONO_USER]?.toString();
-			logger.info(`Found user header: ${headerValue} in request`);
-			logger.info(`Next Auth - Setting sana user token to: ${headerValue} for transaction id: ${transactionId}`);
-			Container.of(transactionId).set(MONO_USER_TOKEN, request.headers[MONO_USER]);
-		}
-
-		if (request.headers?.[MONO_AUTHENTICATED] && request.headers?.[MONO_USER]) {
-			logger.info(`Internal client request with all headers found, skipping auth`);
-			return next();
-		}
+		// if (request.headers?.[THE_CUBE_USER]) {
+		// 	const headerValue = request.headers?.[THE_CUBE_USER]?.toString();
+		// 	logger.info(`Found user header: ${headerValue} in request`);
+		// 	logger.info(`Next Auth - Setting sana user token to: ${headerValue} for transaction id: ${transactionId}`);
+		// 	Container.of(transactionId).set(THE_CUBE_USER_TOKEN, request.headers[THE_CUBE_USER]);
+		// }
+		//
+		// if (request.headers?.[THE_CUBE_AUTHENTICATED] && request.headers?.[THE_CUBE_USER]) {
+		// 	logger.info(`Internal client request with all headers found, skipping auth`);
+		// 	return next();
+		// }
 		logger.info('External request, checking auth');
 		return passport.authenticate('JWT', {session: false})(request, response, next);
 	}

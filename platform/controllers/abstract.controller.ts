@@ -15,7 +15,6 @@ export type RoutingControllerRole = { action: Action; subject: string };
 
 export const buildCrudController = <CI, EI extends ObjectLiteral>(
 	entityName: string,
-	createClass: any,
 	subject: string,
 	Entity: any,
 	serviceName: string,

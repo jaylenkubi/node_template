@@ -2,10 +2,15 @@ import {Column, Entity} from "typeorm"
 import {IsEmpty, IsEnum, IsInt, IsOptional, IsString} from "class-validator";
 import {decorate, Mixin} from "ts-mixer";
 import {Exclude} from "class-transformer";
-import {BaseDBEntity} from "./baseDBEntity";
-import {getContextualEntityService} from "../helper/contextualEntityService";
-import {TitleType, Type} from "../types/user.type";
+import {BaseDBEntity} from "../core/baseDBEntity";
+import {getContextualEntityService} from "../../helper/contextualEntityService";
+import {TitleType, Type} from "../../types/user.type";
 import {AutoMap} from "@automapper/classes";
+import {buildCrudController} from "../../controllers/abstract.controller";
+import {Subject} from "../../config/acls/subjects";
+import {rules} from "../../rules/core.rules";
+import {aclMiddleware} from "../../middlewares/acl.middleware";
+import {PasswordInterceptor} from "../../interceptors/password.interceptor";
 
 export class User {
 
@@ -67,6 +72,18 @@ export class UserEntity extends Mixin(User, BaseDBEntity) {
 	private _!: never
 }
 
+export const UserController = () => buildCrudController<User, UserEntity>(
+	'user',
+	Subject.USER,
+	UserEntity,
+'user',
+	rules,
+	aclMiddleware,
+	[],
+	[PasswordInterceptor],
+	[]
+
+)
 export const UserService = (transactionId: string) => getContextualEntityService<User, UserEntity>('user', UserEntity, transactionId);
 
 

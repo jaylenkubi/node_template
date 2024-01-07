@@ -1,7 +1,7 @@
 import {BaseEntity, EntityManager, EntityTarget, ObjectLiteral} from "typeorm";
 import {Container, Inject, Service, Token} from "typedi";
 import { QueryDeepPartialEntity } from "typeorm/query-builder/QueryPartialEntity";
-import {AppDataSource} from "../data-source";
+import {pgDataSource} from "../config/apiConfig";
 
 export interface RepoRequestContext {
 	entityName: string;
@@ -25,7 +25,7 @@ export interface RelationalAdapterInterface<T> {
 export class RelationalAdapter<T extends ObjectLiteral> implements RelationalAdapterInterface<T> {
 	entityManager: EntityManager;
 	constructor(@Inject(REPO_CONTEXT_TOKEN) protected repoContext: RepoRequestContext) {
-		this.entityManager = AppDataSource.manager;
+		this.entityManager = pgDataSource().manager;
 	}
 
 	private getEntity() {
