@@ -62,6 +62,19 @@ export class User {
 	@decorate(Column({type: 'varchar'}))
 	@decorate(IsEnum(Type))
 	type!: Type;
+
+	@AutoMap()
+	@decorate(IsOptional({ groups: ['update'] }))
+	@decorate(
+		OneToMany(
+			() => GenericTokenEntity,
+			(genericToken) => genericToken.user
+		)
+	)
+	@decorate(ValidateNested({ each: true }))
+	@decorate(Type(() => GenericTokenEntity))
+	@decorate(IsOptional())
+	tokens?: GenericTokenEntity[];
 }
 
 @Entity()
