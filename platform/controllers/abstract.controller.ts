@@ -99,5 +99,5 @@ export const buildCrudController = <CI, EI extends ObjectLiteral>(
 
 	}
 
-	return AbstractController;
+	return AbstractController<CI, EI>;
 };

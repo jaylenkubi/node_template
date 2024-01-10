@@ -1,16 +1,17 @@
-import {Column, Entity} from "typeorm"
-import {IsEmpty, IsEnum, IsInt, IsOptional, IsString} from "class-validator";
+import {Column, Entity, OneToMany} from "typeorm"
+import {IsEmpty, IsEnum, IsInt, IsOptional, IsString, ValidateNested} from "class-validator";
 import {decorate, Mixin} from "ts-mixer";
-import {Exclude} from "class-transformer";
-import {BaseDBEntity} from "../core/baseDBEntity";
-import {getContextualEntityService} from "../../helper/contextualEntityService";
-import {TitleType, Type} from "../../types/user.type";
+import {Exclude, Type} from "class-transformer";
+import {BaseDBEntity} from "./baseDBEntity";
+import {getContextualEntityService} from "../helper/contextualEntityService";
+import {TitleType, UserType} from "../types/user.type";
 import {AutoMap} from "@automapper/classes";
-import {buildCrudController} from "../../controllers/abstract.controller";
-import {Subject} from "../../config/acls/subjects";
-import {rules} from "../../rules/core.rules";
-import {aclMiddleware} from "../../middlewares/acl.middleware";
-import {PasswordInterceptor} from "../../interceptors/password.interceptor";
+import {buildCrudController} from "../controllers/abstract.controller";
+import {Subject} from "../config/acls/subjects";
+import {rules} from "../rules/core.rules";
+import {aclMiddleware} from "../middlewares/acl.middleware";
+import {PasswordInterceptor} from "../interceptors/password.interceptor";
+import {GenericTokenEntity} from "./genericToken";
 
 export class User {
 
@@ -60,8 +61,8 @@ export class User {
 	@AutoMap()
 	@decorate(IsOptional({groups: ['update']}))
 	@decorate(Column({type: 'varchar'}))
-	@decorate(IsEnum(Type))
-	type!: Type;
+	@decorate(IsEnum(UserType))
+	type!: UserType;
 
 	@AutoMap()
 	@decorate(IsOptional({ groups: ['update'] }))
@@ -81,7 +82,6 @@ export class User {
 export class UserEntity extends Mixin(User, BaseDBEntity) {
 	@decorate(Exclude())
 	@decorate(IsEmpty())
-	// @ts-ignore
 	private _!: never
 }
 

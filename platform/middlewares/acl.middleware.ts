@@ -1,4 +1,4 @@
-import {UserEntity} from "../entity/user-management/User";
+import {UserEntity} from "../entity/user";
 import {RoutingControllerRole} from "../controllers/abstract.controller";
 import {ForbiddenError, UnauthorizedError} from "routing-controllers";
 import {logger} from "../helper/logger";

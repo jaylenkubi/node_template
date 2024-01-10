@@ -18,7 +18,7 @@ export const transform = (data: any, dir: string): Config => {
 			resetPasswordExpirationMinutes: 10
 		},
 		encryption: {
-			saltRounds: parseInt(data['ENCRYPTION_SALT_ROUNDS'])
+			saltRounds: parseInt(data['ENCRYPTION_SALT_ROUNDS']) || 10
 		},
 		typeOrm: {
 			type: data['TYPEORM_CONNECTION'] || 'postgres',
@@ -29,8 +29,8 @@ export const transform = (data: any, dir: string): Config => {
 			database: data['TYPEORM_DATABASE'] || 'postgres',
 			logging: data['TYPEORM_LOGGING'] === 'true' || true,
 			synchronize: data['TYPEORM_SYNCHRONIZE'] === 'true' || true,
-			entities: [`${dir}/../api/entity/*{.ts,.js}`],
-			migrations: [`${dir}/../api/entity/migrations/*{.ts,.js}`],
+			entities: [`${dir}/../entity/*{.ts,.js}`],
+			migrations: [`${dir}/../entity/migrations/*{.ts,.js}`],
 			cache: data['TYPEORM_CACHE'] === 'true' || true,
 			extra: JSON.stringify({socketPath: data['TYPEORM_HOST']}),
 			cli: {migrationsDir: `${dir}/../api/entity/migrations/`},

@@ -1,6 +1,6 @@
 import {IsDate, IsEmail, IsString, ValidateNested} from "class-validator";
 import {Type} from "class-transformer";
-import {UserEntity} from "../entity/user-management/User";
+import {UserEntity} from "../entity/user";
 import {AuthTokenResponseInterface, RegisterAndLoginResponseInterface} from "../types/token.type";
 
 export class AccessToken implements AccessToken {

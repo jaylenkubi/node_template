@@ -3,12 +3,18 @@ import { IsDate, IsDefined, IsEmpty, IsInt, IsOptional, IsString } from 'class-v
 import { Exclude, Type } from 'class-transformer';
 import { decorate, Mixin } from 'ts-mixer';
 import { AutoMap } from '@automapper/classes';
-import {buildCrudController} from "../../controllers/abstract.controller";
-import {Subject} from "../../config/acls/subjects";
+import {buildCrudController} from "../controllers/abstract.controller";
+import {Subject} from "../config/acls/subjects";
+import {GenericTokenEntityType, GenericTokenType, TokenType} from '../types/genericToken.type';
+import {UserEntity} from "./user";
+import {BaseDBEntity} from "./baseDBEntity";
+import {rules} from "../rules/core.rules";
+import {aclMiddleware} from "../middlewares/acl.middleware";
+import {getContextualEntityService} from "../helper/contextualEntityService";
 
 
 
-export class GenericToken implements GenericTokenInterface {
+export class GenericToken implements GenericTokenType {
 	@AutoMap()
 	@decorate(IsOptional({ groups: ['update'] }))
 	@decorate(Column({ type: 'varchar' }))
@@ -52,7 +58,7 @@ export class GenericToken implements GenericTokenInterface {
 	@decorate(IsOptional({ groups: ['update'] }))
 	@decorate(
 		ManyToOne(
-			(type) => UserEntity,
+			() => UserEntity,
 			(user) => user.tokens
 		)
 	)
@@ -62,32 +68,21 @@ export class GenericToken implements GenericTokenInterface {
 }
 
 @Entity({ name: 'genericToken' })
-export class GenericTokenEntity extends Mixin(GenericToken, BaseDBEntity) implements GenericTokenEntityInterface {
+export class GenericTokenEntity extends Mixin(GenericToken, BaseDBEntity) implements GenericTokenEntityType {
 	@decorate(Exclude())
 	@decorate(IsEmpty())
 	private _!: never;
 }
 
-export const GenericTokenServiceContext: ServiceContext = {
-	baseUrl: () => process.env.CORE_API_URL!,
-	routePath: 'genericToken'
-};
-
 export const GenericTokenController = () =>
 	buildCrudController<GenericToken, GenericTokenEntity>(
 		'genericToken',
-		GenericToken,
-		GenericTokenEntity,
 		Subject.GENERIC_TOKEN,
-		GenericTokenServiceContext,
+		GenericTokenEntity,
+		'genericToken',
 		rules,
-		aclMiddleware,
-		CoreHistoryMiddleware,
-		SERVICE_NAME,
-		undefined,
-		undefined,
-		[CoreContextMiddleware]
+		aclMiddleware
 	);
 
-export const GenericTokenService = (transactionId: string, external?: boolean) =>
-	getContextualEntityService<GenericToken, GenericTokenEntity>('genericToken', GenericTokenEntity, transactionId, GenericTokenServiceContext, external);
+export const GenericTokenService = (transactionId: string) =>
+	getContextualEntityService<GenericToken, GenericTokenEntity>('genericToken', GenericTokenEntity, transactionId);

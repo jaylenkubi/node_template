@@ -1,15 +1,15 @@
 import {Body, ForbiddenError, JsonController, Post, Req, UnauthorizedError} from "routing-controllers";
 import {OpenAPI, ResponseSchema} from "routing-controllers-openapi";
-import {User, UserEntity, UserService} from "../../entity/user-management/User";
+import {User, UserEntity, UserService} from "../../entity/user";
 import {TRANSACTION_ID} from "../../middlewares/transaction.middleware";
 import bcrypt from "bcryptjs";
 import {RegisterAndLoginResponseInterface, TokenInterface} from "../../types/token.type";
 import {config} from "../../config/apiConfig";
-import {Type, UserType} from "../../types/user.type";
+import {UserType, UserInterface} from "../../types/user.type";
 import {AuthSchema, UserCredential, ValidateSchema} from "../../schemas/auth.schema";
 import {generateAuthTokens, validateAccessToken} from "../../utils/auth.helper";
 import dayjs from "dayjs";
-import {GenericTokenService} from "../../entity/core/genericToken";
+import {GenericTokenService} from "../../entity/genericToken";
 import {generateGenericToken} from "../../utils/token.helper";
 import {TokenType} from "../../types/genericToken.type";
 
@@ -50,7 +50,7 @@ export const AuthController = () => {
 			const {
 				encryption: {saltRounds}
 			} = config();
-			if (newUser.type === Type.ADMIN) throw new ForbiddenError("Can't create admin user");
+			if (newUser.type === UserType.ADMIN) throw new ForbiddenError("Can't create admin user");
 			newUser.password = await bcrypt.hash(newUser.password, config()?.encryption?.saltRounds ?? 8);
 			newUser.email = newUser.email.trim().toLowerCase();
 			const user = await UserService(transactionId).create(newUser);
@@ -77,7 +77,7 @@ export const AuthController = () => {
 			summary: 'Platform auth token validation',
 			operationId: 'validate'
 		})
-		async validate(@Body() accessTokenBody: ValidateSchema, @Req() _req: any): Promise<UserType> {
+		async validate(@Body() accessTokenBody: ValidateSchema, @Req() _req: any): Promise<UserInterface> {
 			const token: TokenInterface = await validateAccessToken(accessTokenBody.accessToken);
 			return token.sub;
 		}

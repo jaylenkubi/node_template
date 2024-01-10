@@ -1,13 +1,14 @@
-import {createExpressServer, RoutingControllersOptions} from "routing-controllers";
+import express, {Express} from "express";
+import {RoutingControllersOptions, useExpressServer} from "routing-controllers";
 import passport from "passport";
 import {logger} from "./helper/logger";
 import {Config} from "./config/config.type";
 
-export const startServer = ( config: { config: Config, jwtStrategy: any }, options: RoutingControllersOptions) => {
+export const startServer = async (config: { config: Config, jwtStrategy: any }, options: RoutingControllersOptions): Promise<Express> => {
 	const {config: {port, jwt}, jwtStrategy} = config;
-	const app = createExpressServer({
-		...options
-	})
+	logger.info(`Options ${JSON.stringify(options)}`)
+	let app = express()
+	app = useExpressServer(app, options);
 
 	app.use(passport.initialize());
 

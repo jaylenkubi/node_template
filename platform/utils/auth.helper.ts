@@ -3,7 +3,7 @@ import Container from 'typedi';
 import bcrypt from 'bcryptjs';
 import {AuthSchema} from '../schemas/auth.schema';
 import {shuffle} from "lodash";
-import {UserService} from "../entity/user-management/User";
+import {UserService} from "../entity/user";
 import {config} from "../config/apiConfig";
 import {logger} from "../helper/logger";
 import {UserEntityType} from "../types/user.type";

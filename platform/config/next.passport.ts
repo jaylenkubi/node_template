@@ -1,6 +1,6 @@
 import {Request} from "express";
 import {Strategy} from "passport-jwt";
-import {UserEntity, UserService} from "../entity/user-management/User";
+import {UserEntity, UserService} from "../entity/user";
 import {logger} from "../helper/logger";
 import {TRANSACTION_ID} from "../middlewares/transaction.middleware";
 import {NotFoundError, UnauthorizedError} from "routing-controllers";

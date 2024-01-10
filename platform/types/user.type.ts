@@ -1,6 +1,6 @@
 import {BaseDbType} from "./base.db.type";
 
-export enum Type {
+export enum UserType {
 	ADMIN = 'ADMIN',
 	CUSTOMER = 'CUSTOMER'
 }
@@ -14,14 +14,15 @@ export enum TitleType {
 	PROF = 'Prof'
 }
 
-export type UserType = {
+
+export type UserInterface = {
 	firstName: string;
 	lastName: string;
 	email: string;
 	phoneNumber?: string;
 	title?: TitleType;
 	password: string;
-	type: Type;
+	type: UserType;
 }
 
-export type UserEntityType = UserType & BaseDbType
+export type UserEntityType = UserInterface & BaseDbType
