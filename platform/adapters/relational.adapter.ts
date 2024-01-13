@@ -45,7 +45,7 @@ export class RelationalAdapter<T extends ObjectLiteral> implements RelationalAda
 
 	findByQuery = async (query: any): Promise<T[]> => {
 		// @ts-ignore
-		return await this.entityManager.findBy(this.getEntity(), query);
+		return await this.entityManager.find(this.getEntity(), query);
 	}
 
 	create = async <U>(payload: U): Promise<T> => {
