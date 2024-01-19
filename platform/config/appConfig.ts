@@ -7,11 +7,14 @@ import {InternalServerError, RoutingControllersOptions} from "routing-controller
 import {startServer} from "../server";
 import {Config} from "./config.type";
 import {logger} from "../helper/logger";
+import {SneakerController} from "../entity/sneaker";
+import {BrandController} from "../entity/brand";
+import {FavouriteController} from "../entity/favorite";
 
 
 export const appConfig: () => RoutingControllersOptions = () => ({
 	routePrefix: "/v1",
-	controllers: [UserController(), AuthController(), GenericTokenController()],
+	controllers: [UserController(), AuthController(), GenericTokenController(), SneakerController(), BrandController(), FavouriteController()],
 	middlewares: [TransactionMiddleware, ErrorMiddleware]
 })
 

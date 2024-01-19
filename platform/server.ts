@@ -6,7 +6,6 @@ import {Config} from "./config/config.type";
 
 export const startServer = async (config: { config: Config, jwtStrategy: any }, options: RoutingControllersOptions): Promise<Express> => {
 	const {config: {port, jwt}, jwtStrategy} = config;
-	logger.info(`Options ${JSON.stringify(options)}`)
 	let app = express()
 	app = useExpressServer(app, options);
 
