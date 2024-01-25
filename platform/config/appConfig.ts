@@ -3,13 +3,13 @@ import {AuthController} from "../controllers/core/auth.controller";
 import {GenericTokenController} from "../entity/genericToken";
 import {TransactionMiddleware} from "../middlewares/transaction.middleware";
 import {ErrorMiddleware} from "../middlewares/error.middleware";
+import {SneakerController} from "../entity/sneaker";
+import {BrandController} from "../entity/brand";
+import {FavouriteController} from "../entity/favorite";
 import {InternalServerError, RoutingControllersOptions} from "routing-controllers";
 import {startServer} from "../server";
 import {Config} from "./config.type";
 import {logger} from "../helper/logger";
-import {SneakerController} from "../entity/sneaker";
-import {BrandController} from "../entity/brand";
-import {FavouriteController} from "../entity/favorite";
 
 
 export const appConfig: () => RoutingControllersOptions = () => ({
@@ -18,7 +18,7 @@ export const appConfig: () => RoutingControllersOptions = () => ({
 	middlewares: [TransactionMiddleware, ErrorMiddleware]
 })
 
-export const initServer = async (config: { config: Config, jwtStrategy: any }) => {
+export const initServer = async (config: { config: Config, jwtStrategy: any, addApiDocs: (app: any, spec: any) => any, retrieveSpec: () => any }) => {
 	try {
 		return await startServer(config, appConfig());
 	} catch (error: any) {

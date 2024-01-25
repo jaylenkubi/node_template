@@ -79,7 +79,6 @@ export const GenericTokenController = () =>
 		'genericToken',
 		Subject.GENERIC_TOKEN,
 		GenericTokenEntity,
-		'genericToken',
 		rules,
 		aclMiddleware
 	);

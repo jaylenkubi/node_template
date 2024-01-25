@@ -17,7 +17,6 @@ export const buildCrudController = <CI, EI extends ObjectLiteral>(
 	entityName: string,
 	subject: string,
 	Entity: any,
-	serviceName: string,
 	rules: (user: UserEntityType, transactionId: string) => RuleInterface[],
 	aclMiddleware: (
 		roles: RoutingControllerRole[],
@@ -27,7 +26,7 @@ export const buildCrudController = <CI, EI extends ObjectLiteral>(
 	interceptors?: Function[],
 	afterMiddlewares?: Function[]
 ) => {
-	@OpenAPI({security: [{jwt: []}], tags: [capitalCase(entityName.trim()), serviceName]})
+	@OpenAPI({security: [{jwt: []}], tags: [capitalCase(entityName.trim())]})
 	@UseBefore(AuthMiddleware, ...(middlewares ?? []))
 	@UseAfter(...(afterMiddlewares ?? []))
 	@UseInterceptor(...(interceptors ?? []))

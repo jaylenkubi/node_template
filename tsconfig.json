@@ -9,10 +9,11 @@
 		"strictFunctionTypes": true,
 		"strictPropertyInitialization": true,
 		"target": "esnext",
-		"module": "CommonJS",
+		"module": "commonJS",
 		"declaration": true,
 		"allowJs": true,
 		"composite": true,
+		"resolveJsonModule": true,
 		"sourceMap": true,
 		"inlineSources": true,
 		"experimentalDecorators": true,
@@ -22,7 +23,7 @@
 	},
 	"ts-node": {
 		"compilerOptions": {
-			"module": "CommonJS"
+			"module": "commonJS"
 		}
 	},
 	"include": [

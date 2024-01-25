@@ -69,11 +69,13 @@ export const rawConfig = (): any => {
 };
 
 
-export const baseInitializeConfig = async (jwtStrategy: any, dir: string) => {
+export const baseInitializeConfig = async (jwtStrategy: any, addApiDocs: (app: any, spec: any) => any, retrieveSpec: () => any, dir: string) => {
 	await fetchConfig(dir)
 	const currentConfig = config();
 	return {
 		config: currentConfig,
-		jwtStrategy
+		jwtStrategy,
+		addApiDocs,
+		retrieveSpec
 	}
 }

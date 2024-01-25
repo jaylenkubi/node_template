@@ -89,7 +89,6 @@ export const UserController = () => buildCrudController<User, UserEntity>(
 	'user',
 	Subject.USER,
 	UserEntity,
-'user',
 	rules,
 	aclMiddleware,
 	[],

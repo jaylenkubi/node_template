@@ -107,7 +107,6 @@ export const SneakerController = () => buildCrudController<Sneaker, SneakerEntit
 	'sneaker',
 	Subject.SNEAKER,
 	SneakerEntity,
-	'sneaker',
 	rules,
 	aclMiddleware,
 	[],

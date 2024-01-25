@@ -4,14 +4,18 @@ import passport from "passport";
 import {logger} from "./helper/logger";
 import {Config} from "./config/config.type";
 
-export const startServer = async (config: { config: Config, jwtStrategy: any }, options: RoutingControllersOptions): Promise<Express> => {
-	const {config: {port, jwt}, jwtStrategy} = config;
+export const startServer = async (config: { config: Config, jwtStrategy: any, addApiDocs: (app: any, spec: any) => any, retrieveSpec: () => any }, options: RoutingControllersOptions): Promise<Express> => {
+	const {config: {port, jwt}, jwtStrategy, retrieveSpec, addApiDocs} = config;
 	let app = express()
 	app = useExpressServer(app, options);
 
 	app.use(passport.initialize());
 
 	passport.use('JWT', jwtStrategy!(jwt.secret));
+
+	const spec = retrieveSpec();
+
+	app = addApiDocs(app, spec);
 
 	const server = app.listen(port)
 	server.keepAliveTimeout = 0

@@ -45,7 +45,6 @@ export const FavouriteController = () => buildCrudController<Favourite, Favourit
 	'favourite',
 	Subject.FAVOURITE,
 	FavouriteEntity,
-	'favourite',
 	rules,
 	aclMiddleware,
 	[],

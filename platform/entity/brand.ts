@@ -30,7 +30,6 @@ export const BrandController = () => buildCrudController<Brand, BrandEnitiy>(
 	'brand',
 	Subject.BRAND,
 	BrandEnitiy,
-	'sneaker',
 	rules,
 	aclMiddleware,
 	[],
