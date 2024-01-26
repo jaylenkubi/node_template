@@ -25,7 +25,7 @@ export const transform = (data: any, dir: string): Config => {
 			host: data['TYPEORM_HOST'] || 'localhost',
 			port: data['TYPEORM_PORT'] || 5432,
 			username: data['TYPEORM_USERNAME'] || 'postgres',
-			password: data['TYPEORM_PASSWORD'] || 'postgres',
+			password: data['TYPEORM_PASSWORD'] || 'Freshcubi1998',
 			database: data['TYPEORM_DATABASE'] || 'postgres',
 			logging: data['TYPEORM_LOGGING'] === 'true' || true,
 			synchronize: data['TYPEORM_SYNCHRONIZE'] === 'true' || true,
