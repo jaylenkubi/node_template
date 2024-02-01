@@ -1,0 +1,20 @@
+
+.heroPaper {
+	height: rem(500px);
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: flex-start;
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+
+}
+
+.heroContainer {
+	box-shadow: 15px 15px 30px #bebebe,
+	-15px -15px 30px #f2f8fc;
+	border-radius: var(--mantine-radius-lg);
+	margin: 50px;
+
+}

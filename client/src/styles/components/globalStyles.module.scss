@@ -1,0 +1,81 @@
+
+.background {
+	background-color: var(--mantine-color-neutral-1);
+}
+
+.appShell {
+	@extend .background;
+	width: 100vw;
+}
+
+.appShellHeader {
+	@extend .appShell;
+}
+
+.appShellMain {
+	@extend .appShell;
+}
+
+.button {
+	border-radius: 50px;
+
+	&[data-variant="filled"] {
+		background-color: var(--mantine-color-neutral-0);
+		color: var(--mantine-color-neutral-1);
+		border-radius: var(--mantine-radius-lg);
+
+		&:hover {
+			filter: brightness(110%);
+		}
+	}
+
+
+	&[data-variant="outline"] {
+		color: var(--mantine-color-neutral-0);
+		border: 1px solid var(--mantine-color-neutral-0);
+		border-radius: var(--mantine-radius-lg);
+
+		&:hover {
+			filter: brightness(110%);
+		}
+	}
+}
+
+.badge {
+	padding: 20px;
+	font-size: var(--mantine-font-size-xxs);
+
+	&[data-variant="outline"] {
+		color: var(--mantine-color-neutral-0);
+		border: 1px solid var(--mantine-color-neutral-0);
+		border-radius: 50px;
+	}
+}
+
+.ProductCard {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	border-radius: var(--mantine-radius-lg);
+	cursor: pointer;
+	width: 90%;
+	height: 100%;
+}
+
+
+.productCardCopy {
+	font-size: var(--mantine-font-size-sm);
+}
+
+.productCardPrice {
+	@extend .productCardCopy;
+}
+
+.ProductCardImageSection {
+	height: 100%;
+	transition: ease-in-out 0.5s;
+
+	&:hover {
+		transform: scale(1.10);
+	}
+}

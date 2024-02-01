@@ -7,6 +7,13 @@ export default defineConfig({
 		port: 5173
 	},
 	plugins: [react(), tsconfigPaths()],
+	css: {
+		preprocessorOptions: {
+			scss: {
+				additionalData: `@import "./src/_mantine";`,
+			},
+		},
+	},
 	build: {
 		outDir: 'build',
 		rollupOptions: {

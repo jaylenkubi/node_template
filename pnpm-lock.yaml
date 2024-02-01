@@ -43,6 +43,7 @@ specifiers:
   pg: ^8.11.3
   pluralize: ^8.0.0
   prettier: ^3.0.3
+  react-router-dom: ^6.21.3
   reflect-metadata: ^0.1.13
   routing-controllers: ^0.10.4
   routing-controllers-openapi: ^4.0.0
@@ -92,6 +93,7 @@ dependencies:
   passport-local: 1.0.0
   pg: 8.11.3
   prettier: 3.1.0
+  react-router-dom: 6.21.3
   reflect-metadata: 0.1.13
   routing-controllers: 0.10.4_p4ywi7fdcrugq6nsanv77hac4q
   routing-controllers-openapi: 4.0.0_routing-controllers@0.10.4
@@ -1009,6 +1011,11 @@ packages:
       open: 9.1.0
       picocolors: 1.0.0
       tslib: 2.6.2
+    dev: false
+
+  /@remix-run/router/1.14.2:
+    resolution: {integrity: sha512-ACXpdMM9hmKZww21yEqWwiLws/UPLhNKvimN8RrYSqPSvB3ov7sLvAcfvaxePeLvccTQKGdkDIhLYApZVDFuKg==}
+    engines: {node: '>=14.0.0'}
     dev: false
 
   /@rollup/rollup-android-arm-eabi/4.9.6:
@@ -4711,6 +4718,26 @@ packages:
   /react-is/18.2.0:
     resolution: {integrity: sha512-xWGDIW6x921xtzPkhiULtthJHoJvBbF3q26fzloPCK0hsvxtPVelvftw3zjbHWSkR2km9Z+4uxbDDK/6Zw9B8w==}
     dev: true
+
+  /react-router-dom/6.21.3:
+    resolution: {integrity: sha512-kNzubk7n4YHSrErzjLK72j0B5i969GsuCGazRl3G6j1zqZBLjuSlYBdVdkDOgzGdPIffUOc9nmgiadTEVoq91g==}
+    engines: {node: '>=14.0.0'}
+    peerDependencies:
+      react: '>=16.8'
+      react-dom: '>=16.8'
+    dependencies:
+      '@remix-run/router': 1.14.2
+      react-router: 6.21.3
+    dev: false
+
+  /react-router/6.21.3:
+    resolution: {integrity: sha512-a0H638ZXULv1OdkmiK6s6itNhoy33ywxmUFT/xtSoVyf9VnC7n7+VT4LjVzdIHSaF5TIh9ylUgxMXksHTgGrKg==}
+    engines: {node: '>=14.0.0'}
+    peerDependencies:
+      react: '>=16.8'
+    dependencies:
+      '@remix-run/router': 1.14.2
+    dev: false
 
   /readable-stream/2.3.8:
     resolution: {integrity: sha512-8p0AUk4XODgIewSi0l8Epjs+EVnWiK7NoDIEGU0HhE7+ZyY8D1IMY7odu5lRrFXGg71L15KG8QrPmum45RTtdA==}
