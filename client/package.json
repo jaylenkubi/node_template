@@ -10,6 +10,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.5.1",
+    "@fortawesome/free-brands-svg-icons": "^6.5.1",
+    "@fortawesome/free-regular-svg-icons": "^6.5.1",
+    "@fortawesome/free-solid-svg-icons": "^6.5.1",
+    "@fortawesome/react-fontawesome": "^0.2.0",
     "@mantine/carousel": "^7.4.2",
     "@mantine/charts": "^7.4.2",
     "@mantine/code-highlight": "^7.4.2",
@@ -29,6 +34,7 @@
     "@tiptap/extension-link": "^2.1.16",
     "@tiptap/react": "^2.1.16",
     "@tiptap/starter-kit": "^2.1.16",
+    "clsx": "^2.1.0",
     "dayjs": "^1.11.10",
     "embla-carousel-autoplay": "^7.1.0",
     "embla-carousel-react": "^7.1.0",

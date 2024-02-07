@@ -14,12 +14,12 @@ export function Header() {
 		</Container>
 		<Container size="xxl" className={classes.badgeSection}>
 			<Flex justify={'space-around'}>
-				<Badge variant={'outline'}>Air Jordan</Badge>
-				<Badge variant={'outline'}>Nike</Badge>
-				<Badge variant={'outline'}>New Balance</Badge>
-				<Badge variant={'outline'}>Yeezy</Badge>
-				<Badge variant={'outline'}>Air Jordan 4</Badge>
-				<Badge variant={'outline'}>Air Jordan 1</Badge>
+				<Badge variant={'navBadge'}>Air Jordan</Badge>
+				<Badge variant={'navBadge'}>Nike</Badge>
+				<Badge variant={'navBadge'}>New Balance</Badge>
+				<Badge variant={'navBadge'}>Yeezy</Badge>
+				<Badge variant={'navBadge'}>Air Jordan 4</Badge>
+				<Badge variant={'navBadge'}>Air Jordan 1</Badge>
 			</Flex>
 		</Container>
 	</Container>)

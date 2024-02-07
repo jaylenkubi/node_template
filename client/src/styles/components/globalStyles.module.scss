@@ -1,11 +1,23 @@
 
+// Small screens
+$small: 480px;
+
+// Medium screens
+$medium: 768px;
+
+// Large screens
+$large: 1024px;
+
+// Extra large screens
+$xlarge: 1200px;
+
+
 .background {
 	background-color: var(--mantine-color-neutral-1);
 }
 
 .appShell {
 	@extend .background;
-	width: 100vw;
 }
 
 .appShellHeader {
@@ -39,6 +51,18 @@
 			filter: brightness(110%);
 		}
 	}
+
+	&[data-variant="subtle"] {
+		color: var(--mantine-color-neutral-0);
+
+		&:hover {
+			filter: brightness(110%);
+		}
+
+		&:active {
+			background-color: var(--mantine-color-neutral-1);
+		}
+	}
 }
 
 .badge {
@@ -49,6 +73,20 @@
 		color: var(--mantine-color-neutral-0);
 		border: 1px solid var(--mantine-color-neutral-0);
 		border-radius: 50px;
+		cursor: pointer;
+	}
+
+	&[data-variant="navBadge"] {
+		color: var(--mantine-color-neutral-0);
+		border: 1px solid var(--mantine-color-neutral-0);
+		border-radius: 50px;
+		background-color: var(--mantine-color-neutral-1);
+		cursor: pointer;
+
+		&:hover {
+			box-shadow: 0 0 1em .25em var(--mantine-color-neutral-0),
+			0 0 4em 1em var(--mantine-color-neutral-1),
+		}
 	}
 }
 
@@ -58,8 +96,8 @@
 	align-items: center;
 	border-radius: var(--mantine-radius-lg);
 	cursor: pointer;
-	width: 90%;
-	height: 100%;
+	max-width: 250px;
+	min-height: 280px;
 }
 
 
@@ -78,4 +116,28 @@
 	&:hover {
 		transform: scale(1.10);
 	}
+}
+
+
+.responsiveContainer {
+	margin: 50px auto;
+	@media(min-width: 1200px) {
+		max-width: 50%;
+		margin: 0 auto;
+
+	}
+}
+
+.footer {
+	background-color: var(--mantine-color-neutral-0);
+	color: #d3d3d3;
+	padding: 20px 12px;
+	margin-top: 48px;
+	min-height: 200px;
+}
+
+.footerIcons {
+	background-color: black;
+	color: #f2f8fc;
+	margin-right: 20px;
 }

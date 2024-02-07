@@ -1,5 +1,6 @@
-import {Badge, Button, createTheme} from "@mantine/core";
-import buttonClasses from '../../styles/components/globalStyles.module.scss';
+import cx from 'clsx';
+import {Badge, Button, Container, createTheme} from "@mantine/core";
+import classes from '../../styles/components/globalStyles.module.scss';
 
 export const appTheme: any = createTheme({
 	fontFamily: 'Inter, sans-serif',
@@ -56,14 +57,19 @@ export const appTheme: any = createTheme({
 	components: {
 		Button: Button.extend({
 			classNames: {
-				root: buttonClasses.button
+				root: classes.button
 			}
 		}),
 		Badge: Badge.extend({
 			classNames: {
-				root: buttonClasses.badge
+				root: classes.badge
 			}
-		})
+		}),
+		Container: Container.extend({
+			classNames: (_, {size}) => ({
+				root: cx({[classes.responsiveContainer]: size === 'responsive'}),
+			})
+		}),
 		// Button: {
 		// 	styles: ({ radius, colors }) => ({
 		// 		label: {

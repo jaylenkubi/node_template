@@ -1,6 +1,6 @@
 
 .heroPaper {
-	height: rem(500px);
+	min-height: rem(300px);
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
@@ -9,12 +9,22 @@
 	background-position: center;
 	background-repeat: no-repeat;
 
+	@media (min-width: 768px) {
+		min-height: rem(400px);
+	}
+
+	@media (min-width: 1024px) {
+		min-height: rem(500px);
+	}
+
 }
 
 .heroContainer {
 	box-shadow: 15px 15px 30px #bebebe,
 	-15px -15px 30px #f2f8fc;
-	border-radius: var(--mantine-radius-lg);
-	margin: 50px;
 
+	@media(min-width: 1200px) {
+		max-width: 90%;
+		margin: 0 auto;
+	}
 }
