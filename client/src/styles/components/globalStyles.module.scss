@@ -1,17 +1,4 @@
 
-// Small screens
-$small: 480px;
-
-// Medium screens
-$medium: 768px;
-
-// Large screens
-$large: 1024px;
-
-// Extra large screens
-$xlarge: 1200px;
-
-
 .background {
 	background-color: var(--mantine-color-neutral-1);
 }
@@ -132,7 +119,6 @@ $xlarge: 1200px;
 	background-color: var(--mantine-color-neutral-0);
 	color: #d3d3d3;
 	padding: 20px 12px;
-	margin-top: 48px;
 	min-height: 200px;
 }
 
