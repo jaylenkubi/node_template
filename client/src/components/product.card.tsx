@@ -1,5 +1,6 @@
 import {Card, Grid, Image, Text} from "@mantine/core";
 import classes from "../styles/components/globalStyles.module.scss";
+import {useNavigate} from "react-router-dom";
 
 interface CardProps {
 	imageUrl: string;
@@ -9,9 +10,9 @@ interface CardProps {
 }
 
 export function ProductCard({imageUrl, brand, title, price}: CardProps) {
-
+	const navigate = useNavigate()
 	return (
-		<Card className={classes.ProductCard}>
+		<Card className={classes.ProductCard} onClick={() => navigate('/product-page')}>
 			<Card.Section className={classes.ProductCardImageSection}>
 				<Image
 					src={imageUrl}

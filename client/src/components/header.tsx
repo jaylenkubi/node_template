@@ -1,14 +1,17 @@
 import {Badge, Button, Container, Flex, Group, Text} from "@mantine/core";
 import classes from "../styles/components/header.module.scss";
+import {useNavigate} from "react-router-dom";
 
 export function Header() {
+
+	const navigate = useNavigate()
 	return (<Container size={'xxl'}>
 		<Container size="xxl" className={classes.mainSection}>
 			<Flex justify="space-between" h="100%" align={'center'}>
-				<Text>The Cube</Text>
+				<Text onClick={() => navigate('/')}>The Cube</Text>
 				<Group>
-					<Button variant={'outline'}>Sign up</Button>
-					<Button variant={'filled'}>Log in</Button>
+					<Button variant={'outline'} size={'xs'}>Sign up</Button>
+					<Button variant={'filled'} size={'xs'}>Log in</Button>
 				</Group>
 			</Flex>
 		</Container>
