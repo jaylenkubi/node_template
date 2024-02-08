@@ -47,7 +47,7 @@ export function HeroCarousel() {
 	));
 
 	return (
-			<Carousel loop className={classes.heroContainer}>
+			<Carousel className={classes.heroContainer}>
 				{slides}
 			</Carousel>
 	)
