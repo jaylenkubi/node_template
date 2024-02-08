@@ -1,7 +1,7 @@
-import {Entity, OneToMany} from "typeorm"
-import {IsEmpty, IsInt, IsOptional, IsString, ValidateNested} from "class-validator";
+import {Entity} from "typeorm"
+import {IsEmpty, IsInt, IsOptional, IsString} from "class-validator";
 import {decorate, Mixin} from "ts-mixer";
-import {Exclude, Type} from "class-transformer";
+import {Exclude} from "class-transformer";
 import {BaseDBEntity} from "./baseDBEntity";
 import {getContextualEntityService} from "../helper/contextualEntityService";
 import {AutoMap} from "@automapper/classes";
@@ -9,7 +9,6 @@ import {buildCrudController} from "../controllers/abstract.controller";
 import {Subject} from "../config/acls/subjects";
 import {rules} from "../rules/core.rules";
 import {aclMiddleware} from "../middlewares/acl.middleware";
-import {SneakerEntity} from "./sneaker";
 
 export class Favourite {
 
@@ -17,24 +16,17 @@ export class Favourite {
 	@decorate(IsString())
 	@decorate(IsInt())
 	@decorate(IsOptional({groups: ["update"]}))
-	usrId!: number
+	userId!: number
 
 	@AutoMap()
-	@decorate(IsOptional({ groups: ['update'] }))
-	@decorate(
-		OneToMany(
-			() => SneakerEntity,
-			(sneaker) => sneaker.favourite
-		)
-	)
-	@decorate(ValidateNested({ each: true }))
-	@decorate(Type(() => SneakerEntity))
+	@decorate(IsOptional({groups: ['update']}))
+	@decorate(IsInt({each: true}))
 	@decorate(IsOptional())
-	sneakers?: SneakerEntity[];
+	sneakerIds?: number[];
 
 }
 
-@Entity()
+@Entity({name: 'favourite'})
 export class FavouriteEntity extends Mixin(Favourite, BaseDBEntity) {
 	@decorate(Exclude())
 	@decorate(IsEmpty())

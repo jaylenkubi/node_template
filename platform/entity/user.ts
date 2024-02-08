@@ -78,7 +78,7 @@ export class User {
 	tokens?: GenericTokenEntity[];
 }
 
-@Entity()
+@Entity({name: 'user'})
 export class UserEntity extends Mixin(User, BaseDBEntity) {
 	@decorate(Exclude())
 	@decorate(IsEmpty())
