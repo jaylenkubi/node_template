@@ -1,20 +1,45 @@
 import {Config} from "./config.type";
 import {DataSource} from "typeorm";
 import {PostgresConnectionOptions} from "typeorm/driver/postgres/PostgresConnectionOptions";
+import {SecretManagerServiceClient} from "@google-cloud/secret-manager";
+import dotenv from "dotenv";
+
 
 let configObj: Config;
 let rawConfigObj: any;
 
+if (!process.env.NODE_ENV) {
+	process.env.NODE_ENV = 'development';
+}
+
+const environment = process.env.NODE_ENV;
+
+dotenv.config({ path: `.env.${environment}` });
+
+const client = new SecretManagerServiceClient();
+
+const getSecret = async (projectId: string, env: string): Promise<any> => {
+	const [version] = await client.accessSecretVersion({name: `projects/${projectId}/secrets/codebase-credentials-${env}/versions/latest`});
+	const secretDataBuffer = version?.payload?.data;
+	if (!secretDataBuffer) {
+		throw new Error("Secret data not found.");
+	}
+	const secretDataString = secretDataBuffer.toString();
+	const secretData = JSON.parse(secretDataString);
+	return secretData;
+}
+
 export let PGDataSource: DataSource;
 
 export const transform = (data: any, dir: string): Config => {
+
 	return {
 		env: process.env?.NODE_ENV || '',
 		port: data['PORT'] || 8000,
 		jwt: {
 			secret: data['JWT_SECRET'] || 'secret',
-			accessExpirationMinutes: data['JWT_ACCESS_EXPIRATION_MINUTES'] as unknown as number || 3600,
-			refreshExpirationDays: data['JWT_REFRESH_EXPIRATION_DAYS'] as unknown as number || 30,
+			accessExpirationMinutes: parseInt(data['JWT_ACCESS_EXPIRATION_MINUTES']) || 3600,
+			refreshExpirationDays: parseInt(data['JWT_REFRESH_EXPIRATION_DAYS'])  || 30,
 			resetPasswordExpirationMinutes: 10
 		},
 		encryption: {
@@ -23,7 +48,7 @@ export const transform = (data: any, dir: string): Config => {
 		typeOrm: {
 			type: data['TYPEORM_CONNECTION'] || 'postgres',
 			host: data['TYPEORM_HOST'] || 'localhost',
-			port: data['TYPEORM_PORT'] || 5432,
+			port: parseInt(data['TYPEORM_PORT']) || 5432,
 			username: data['TYPEORM_USERNAME'] || 'postgres',
 			password: data['TYPEORM_PASSWORD'] || 'postgres',
 			database: data['TYPEORM_DATABASE'] || 'postgres',
@@ -48,7 +73,8 @@ export const transform = (data: any, dir: string): Config => {
 
 export const fetchConfig = async (dir: string): Promise<void> => {
 	rawConfigObj = process.env;
-	configObj = transform(process.env, dir);
+	const data = await getSecret(rawConfigObj['GCP_PROJECT_ID'], rawConfigObj['NODE_ENV']);
+	configObj = transform(data, dir);
 	PGDataSource = await new DataSource({
 		...configObj.typeOrm,
 		autoLoadEntities: true,
