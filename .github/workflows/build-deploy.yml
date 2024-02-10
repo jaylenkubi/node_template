@@ -26,6 +26,9 @@ jobs:
       with:
        credentials_json: '${{ secrets.GCP_CREDENTIALS }}'
        token_format: 'access_token'
+
+    - name: Google Auth Config
+      run: gcloud auth configure-docker us-central1-docker.pkg.dev
         
     - name: Docker Auth
       id: docker-auth
