@@ -1,18 +1,18 @@
-FROM node:20 AS backend
+FROM node:alpine AS backend-service
 
 WORKDIR /app
 
+ARG NODE_ENV=staging
+ENV NODE_ENV=$NODE_ENV
+
 COPY package*.json ./
-COPY .env.development ./
-COPY .env.staging ./
+
 RUN npm install -g pnpm
 RUN pnpm install
 
 COPY . .
 
 RUN pnpm run client-gen
-
-EXPOSE 8000
 
 CMD ["pnpm", "run", "start"]
 

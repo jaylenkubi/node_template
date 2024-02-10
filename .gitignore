@@ -4,3 +4,4 @@ node_modules/
 .env
 libraries/services/rpc-services
 libraries/services/ui-services
+docker-backend-container-sa-key.json

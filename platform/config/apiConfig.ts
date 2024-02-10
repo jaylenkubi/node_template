@@ -4,17 +4,14 @@ import {PostgresConnectionOptions} from "typeorm/driver/postgres/PostgresConnect
 import {SecretManagerServiceClient} from "@google-cloud/secret-manager";
 import dotenv from "dotenv";
 
-
 let configObj: Config;
 let rawConfigObj: any;
 
-if (!process.env.NODE_ENV) {
-	process.env.NODE_ENV = 'development';
+if (process.env.NODE_ENV == 'development') {
+	const environment = process.env.NODE_ENV;
+	dotenv.config({path: `.env.${environment}`});
 }
 
-const environment = process.env.NODE_ENV;
-
-dotenv.config({ path: `.env.${environment}` });
 
 const client = new SecretManagerServiceClient();
 
@@ -25,8 +22,7 @@ const getSecret = async (projectId: string, env: string): Promise<any> => {
 		throw new Error("Secret data not found.");
 	}
 	const secretDataString = secretDataBuffer.toString();
-	const secretData = JSON.parse(secretDataString);
-	return secretData;
+	return JSON.parse(secretDataString);
 }
 
 export let PGDataSource: DataSource;
