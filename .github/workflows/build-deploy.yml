@@ -37,8 +37,8 @@ jobs:
         
     - name: Build and push image 
       run: |
-        docker build -t 'europe-west2-docker.pkg.dev/${{ secrets.PROJECT_ID }}/gcr/${{ github.event.repository.name }}:${{ github.sha }}' ./
-        docker push 'europe-west2-docker.pkg.dev/${{ secrets.PROJECT_ID }}/gcr/${{ github.event.repository.name }}:${{ github.sha }}'
+        docker build -t 'europe-west2-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/gcr/${{ github.event.repository.name }}:${{ github.sha }}' ./
+        docker push 'europe-west2-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/gcr/${{ github.event.repository.name }}:${{ github.sha }}'
  
     - name: Deploy to Cloud Run
       id: deploy
