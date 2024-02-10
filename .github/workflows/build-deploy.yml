@@ -26,8 +26,9 @@ jobs:
       with:
         token_format: 'access_token'
         project_id: '${{ secrets.GCP_PROJECT_ID }}'
-        workload_identity_provider: '${{ secrets.WIF_PROVIDER }}' # e.g. - projects/123456789/locations/global/workloadIdentityPools/my-pool/providers/my-provider
-
+        workload_identity_provider: '${{ secrets.WIF_PROVIDER }}'
+        service_account: '${{ secrets.WIF_SERVICE_ACCOUNT }}'
+        
     - name: Docker Auth
       id: docker-auth
       uses: 'docker/login-action@v1'
