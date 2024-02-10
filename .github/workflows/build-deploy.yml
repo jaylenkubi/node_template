@@ -28,7 +28,7 @@ jobs:
        token_format: 'access_token'
 
     - name: Google Auth Config
-      run: gcloud auth configure-docker us-central1-docker.pkg.dev
+      run: gcloud auth configure-docker europe-west2-docker.pkg.dev
         
     - name: Docker Auth
       id: docker-auth
@@ -40,8 +40,8 @@ jobs:
         
     - name: Build and push image 
       run: |
-        docker build -t 'europe-west2-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/gcr/${{ github.event.repository.name }}:${{ github.sha }}' ./
-        docker push 'europe-west2-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/gcr/${{ github.event.repository.name }}:${{ github.sha }}'
+        docker build -t 'europe-west2-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/node-template:${{ github.sha }}' ./
+        docker push 'europe-west2-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/node-template:${{ github.sha }}'
  
     - name: Deploy to Cloud Run
       id: deploy
