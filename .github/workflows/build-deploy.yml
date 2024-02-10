@@ -22,12 +22,12 @@ jobs:
 
     - name: Google Auth
       id: auth
-      uses: 'google-github-actions/auth@v0'
+      uses: 'google-github-actions/auth@v2'
       with:
         token_format: 'access_token'
         project_id: '${{ secrets.GCP_PROJECT_ID }}'
         workload_identity_provider: '${{ secrets.WIF_PROVIDER }}'
-        service_account: 'docker-backend-container-sa@scenic-foundry-413622.iam.gserviceaccount.com'
+        service_account: 'github-actions@scenic-foundry-413622.iam.gserviceaccount.com'
         
     - name: Docker Auth
       id: docker-auth
