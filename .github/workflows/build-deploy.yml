@@ -45,8 +45,10 @@ jobs:
  
     - name: Deploy to Cloud Run
       id: deploy
-      uses: 'google-github-actions/deploy-cloudrun@v2'
-      with:
-        service: 'node-template-service'
-        region: 'europe-west2'
-        image: 'europe-west2-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/node-template/backend-service:${{ github.sha }}'
+      run: |
+        gcloud run deploy node-template-service \
+        --image=europe-west2-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/node-template/backend-service:${{ github.sha }} \
+        --region=europe-west2 \
+        --set-env-vars=SECRET_ID=${{ secrets.SECRET_ID }}
+
+
