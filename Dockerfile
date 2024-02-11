@@ -5,6 +5,10 @@ WORKDIR /app
 ARG NODE_ENV=staging
 ENV NODE_ENV=$NODE_ENV
 
+ARG GCP_CREDENTIALS
+RUN echo $GCP_CREDENTIALS | base64 -d > /creds.json
+ENV GOOGLE_APPLICATION_CREDENTIALS=/creds.json
+
 COPY package*.json ./
 
 RUN npm install -g pnpm
