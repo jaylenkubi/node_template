@@ -8,40 +8,45 @@ on:
 
 jobs:
 
-  build:
+  deploy:
+    permissions:
+      contents: 'read'
+      id-token: 'write'
 
     runs-on: ubuntu-latest
 
     steps:
     
     - name: Checkout code
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
     - name: Google Auth
       id: auth
-      uses: 'google-github-actions/auth@v0'
+      uses: 'google-github-actions/auth@v2'
       with:
-        token_format: 'access_token'
-        project_id: '${{ secrets.GCP_PROJECT_ID }}'
-        workload_identity_provider: '${{ secrets.WIF_PROVIDER }}' # e.g. - projects/123456789/locations/global/workloadIdentityPools/my-pool/providers/my-provider
-        service_account: '${{ secrets.WIF_SERVICE_ACCOUNT }}' # e.g. - my-service-account@my-project.iam.gserviceaccount.com
+       credentials_json: '${{ secrets.GCP_CREDENTIALS }}'
+       token_format: 'access_token'
 
+    - name: Google Auth Config
+      run: gcloud auth configure-docker europe-west2-docker.pkg.dev
+        
     - name: Docker Auth
       id: docker-auth
-      uses: 'docker/login-action@v1'
+      uses: 'docker/login-action@v3'
       with:
         username: 'oauth2accesstoken'
         password: '${{ steps.auth.outputs.access_token }}'
-        registry: 'gcr.io'
+        registry: 'europe-west2-docker.pkg.dev'
         
     - name: Build and push image 
       run: |
-        docker build -t gcr.io/${{ secrets.GCP_PROJECT_ID }}/${{ github.event.repository.name }}:${{ github.sha }} .
-        docker push gcr.io/${{ secrets.GCP_PROJECT_ID }}/${{ github.event.repository.name }}:${{ github.sha }}
-
+        docker build -t 'europe-west2-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/node-template/backend-service:${{ github.sha }}' .
+        docker push 'europe-west2-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/node-template/backend-service:${{ github.sha }}'
+ 
     - name: Deploy to Cloud Run
-      uses: google-github-actions/deploy-cloudrun@v0
-      with: 
-        service: ${{ github.event.repository.name }}
-        image: gcr.io/${{ secrets.GCP_PROJECT_ID }}/${{ github.event.repository.name }}:${{ github.sha }}
-        region: europe-west2
+      id: deploy
+      uses: 'google-github-actions/deploy-cloudrun@v2'
+      with:
+        service: 'node-template-service'
+        region: 'europe-west2'
+        image: 'europe-west2-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/node-template/backend-service:${{ github.sha }}'
