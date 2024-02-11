@@ -39,7 +39,7 @@ jobs:
 
     - name: Build and push image
       run: |
-        docker build -t 'europe-west2-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/node-template/backend-service:${{ github.sha }}' --build-arg GCP_CREDENTIALS=${{ secrets.GCP_CREDENTIALS }} .
+        docker build -t 'europe-west2-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/node-template/backend-service:${{ github.sha }}' .
         docker push 'europe-west2-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/node-template/backend-service:${{ github.sha }}'
 
     - name: Deploy to Cloud Run  
