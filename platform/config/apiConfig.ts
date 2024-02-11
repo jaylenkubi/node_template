@@ -69,7 +69,7 @@ export const transform = (data: any, dir: string): Config => {
 
 export const fetchConfig = async (dir: string): Promise<void> => {
 	rawConfigObj = process.env;
-	const data = await getSecret(rawConfigObj['GCP_PROJECT_ID'], rawConfigObj['NODE_ENV']);
+	const data = await getSecret(rawConfigObj['SECRET_ID'], rawConfigObj['NODE_ENV']);
 	configObj = transform(data, dir);
 	PGDataSource = await new DataSource({
 		...configObj.typeOrm,
