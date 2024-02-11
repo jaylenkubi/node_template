@@ -15,8 +15,15 @@ COPY . .
 RUN pnpm run client-gen
 
 
+# Add Cloud Shell
+FROM gcr.io/cloud-sdk/cloud-sdk:slim AS cloudshell
+
+
 # Add the cloud_sql_proxy as a second stage
 FROM gcr.io/cloudsql-docker/gce-proxy:latest AS cloud-sql-proxy-sidecar
+
+# Copy shell from Cloud Shell stage
+COPY --from=cloudshell /bin/bash /bin/bash
 
 # Copy the node_modules from the first stage
 COPY --from=backend-service /app/node_modules ./node_modules
