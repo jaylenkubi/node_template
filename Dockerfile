@@ -16,7 +16,7 @@ RUN pnpm run client-gen
 
 
 # Add the cloud_sql_proxy as a second stage
-FROM gcr.io/cloudsql-docker/gce-proxy:2.8.2 AS cloud-sql-proxy-sidecar
+FROM gcr.io/cloudsql-docker/gce-proxy:latest AS cloud-sql-proxy-sidecar
 
 # Copy the node_modules from the first stage
 COPY --from=backend-service /app/node_modules ./node_modules
