@@ -37,10 +37,14 @@ jobs:
         username: _json_key
         password: ${{ secrets.GCP_CREDENTIALS }}
 
-    - name: Build and push image
+    - name: Docker Build
       run: |
-        docker build -t 'europe-west2-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/node-template/backend-service:${{ github.sha }}' --build-arg GCP_CREDENTIALS=${{ secrets.GCP_CREDENTIALS }} .
-        docker push 'europe-west2-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/node-template/backend-service:${{ github.sha }}'
+        docker build -t 'europe-west2-docker.pkg.dev/***/node-template/backend-service:a7099d126bfae2ca6f4a7691193bd1edd91c8c48' \
+                 --build-arg GCP_CREDENTIALS="${{ secrets.GCP_CREDENTIALS }}" .
+
+    - name: Docker Push
+      run: |
+        docker push 'europe-west2-docker.pkg.dev/***/node-template/backend-service:a7099d126bfae2ca6f4a7691193bd1edd91c8c48'
 
     - name: Deploy to Cloud Run  
       run: |
