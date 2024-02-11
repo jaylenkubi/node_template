@@ -31,11 +31,11 @@ jobs:
         gcloud auth activate-service-account --key-file=creds.json
 
     - name: Docker Auth 
-      uses: 'docker/login-action@v3'
+      uses: docker/login-action@v3
       with:
-        username: 'oauth2accesstoken' 
-        password: '${{ steps.auth.outputs.access_token }}'
         registry: 'europe-west2-docker.pkg.dev'
+        username: _json_key
+        password: ${{ secrets.GCP_CREDENTIALS }}
 
     - name: Build and push image
       run: |
