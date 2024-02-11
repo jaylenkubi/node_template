@@ -27,7 +27,7 @@ jobs:
 
     - name: Activate Service Account
       run: |
-        echo "${{ secrets.GCP_CREDENTIALS }}" > creds.json
+        echo '${{ secrets.GCP_CREDENTIALS }}' > creds.json
         gcloud auth activate-service-account --key-file=creds.json
 
     - name: Docker Auth 
