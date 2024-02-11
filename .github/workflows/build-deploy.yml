@@ -50,3 +50,5 @@ jobs:
         service: 'node-template-service'
         region: 'europe-west2'
         image: 'europe-west2-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/node-template/backend-service:${{ github.sha }}'
+      env:
+        SECRET_ID: ${{ secrets.SECRET_ID }}
