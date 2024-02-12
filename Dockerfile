@@ -10,8 +10,12 @@ COPY package*.json ./
 RUN npm install -g pnpm
 RUN pnpm install
 
-COPY . .
+# Add build step after install
+RUN pnpm run build
+
+# Copy dist/ with compiled JS instead of source TS
+COPY dist/ ./
 
 EXPOSE 8080
 
-CMD node platform/index.ts
+CMD node dist/platform/index.js
