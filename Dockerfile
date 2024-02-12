@@ -12,6 +12,6 @@ RUN pnpm install
 
 COPY . .
 
-RUN pnpm run client-gen
+EXPOSE 8080
 
-CMD ["pnpm", "run", "start"]
+CMD node platform/index.ts
