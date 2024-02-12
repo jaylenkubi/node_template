@@ -1,6 +1,7 @@
 {
 	"name": "thecube",
 	"version": "1.0.0",
+	"type": "module",
 	"description": "Platform API",
 	"main": "index.js",
 	"scripts": {
