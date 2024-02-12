@@ -10,7 +10,6 @@ COPY package*.json ./
 RUN npm install -g pnpm
 RUN pnpm install
 
-# Add build step after install
 RUN pnpm run build
 
 EXPOSE 8080

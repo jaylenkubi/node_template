@@ -1,11 +1,11 @@
 {
 	"name": "thecube",
 	"version": "1.0.0",
-	"type": "module",
 	"description": "Platform API",
 	"main": "index.js",
 	"scripts": {
 		"start": "ts-node-dev --respawn platform/index.ts",
+		"build": "tsc -p tsconfig.json",
 		"typeorm": "typeorm-ts-node-commonjs",
 		"spec:full-gen": "ts-node platform/config/apiDocs/fullGen.ts",
 		"client-gen:ui": "pnpm run spec:full-gen && orval --config platform/orval.ui.config.js",
