@@ -6,11 +6,13 @@ ARG NODE_ENV=staging
 ENV NODE_ENV=$NODE_ENV
 
 COPY package*.json ./
+COPY tsconfig.json ./
 
 RUN npm install -g pnpm
 RUN pnpm install
 
-RUN pnpm run build
+# Compile TS to ./dist/
+RUN pnpm tsc -p tsconfig.json -outDir dist/
 
 EXPOSE 8080
 
