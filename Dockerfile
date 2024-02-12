@@ -14,4 +14,4 @@ COPY . .
 
 EXPOSE 8080
 
-CMD node platform/index.ts
+CMD node platform/index.js
