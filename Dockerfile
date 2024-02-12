@@ -13,9 +13,6 @@ RUN pnpm install
 # Add build step after install
 RUN pnpm run build
 
-# Copy dist/ with compiled JS instead of source TS
-COPY dist/ ./
-
 EXPOSE 8080
 
 CMD node dist/platform/index.js
