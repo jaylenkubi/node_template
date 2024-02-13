@@ -6,7 +6,8 @@ ARG NODE_ENV=staging
 ENV NODE_ENV=$NODE_ENV
 
 COPY package*.json ./
-COPY tsconfig.json ./
+
+COPY . .
 
 RUN npm install -g pnpm
 RUN pnpm install
@@ -16,4 +17,4 @@ RUN pnpm tsc -p tsconfig.json -outDir dist/
 
 EXPOSE 8080
 
-CMD node dist/platform/index.js
+CMD node dist/index.js
