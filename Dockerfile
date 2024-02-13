@@ -17,4 +17,4 @@ RUN pnpm tsc -p tsconfig.json -outDir dist/
 
 EXPOSE 8080
 
-CMD node dist/index.js
+CMD node dist/platform/index.js
