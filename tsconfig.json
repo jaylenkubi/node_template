@@ -11,6 +11,7 @@
 		"strictPropertyInitialization": true,
 		"target": "esnext",
 		"module": "commonjs",
+		"rootDir": "./platform",
 		"declaration": true,
 		"allowJs": true,
 		"composite": true,

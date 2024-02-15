@@ -1,20 +1,31 @@
-FROM node:alpine AS backend-service
+FROM node:alpine AS build
 
 WORKDIR /app
 
-ARG NODE_ENV=staging
-ENV NODE_ENV=$NODE_ENV
-
-COPY package*.json ./
-
-COPY . .
+COPY package*.json .
 
 RUN npm install -g pnpm
 RUN pnpm install
 
-# Compile TS to ./dist/
-RUN pnpm tsc -p tsconfig.json -outDir dist/
+COPY . .
 
-EXPOSE 8080
+RUN pnpm run build
 
-CMD node dist/platform/index.js
+
+FROM node:alpine as production
+
+ARG NODE_ENV=production
+ARG PROJECT_ID=417662226143
+ENV NODE_ENV=${NODE_ENV}
+ENV PROJECT_ID=${PROJECT_ID}
+
+WORKDIR /app
+
+COPY package*.json .
+
+RUN npm install -g pnpm
+RUN pnpm install --production
+
+COPY --from=build /app/dist ./dist
+
+CMD ["node", "dist/index.js"]

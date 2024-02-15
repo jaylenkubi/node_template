@@ -1,34 +1,11 @@
 version: '3.8'
 
 services:
-    dev-postgres:
-        container_name: dev-postgres
-        image: postgres:latest
-        environment:
-            POSTGRES_USER: postgres
-            POSTGRES_PASSWORD: Freshcubi1998
-            POSTGRES_DB: postgres
-        ports:
-            - "5432:5432"
-        networks:
-            - dev-network
-
     dev-backend-service:
-        container_name: dev-backend-service
+        container_name: prod-backend-service
         build:
             context: .
             dockerfile: Dockerfile
-            target: dev-backend-service
-        environment:
-            GOOGLE_APPLICATION_CREDENTIALS: /app/docker-backend-container-sa-key.json
+            target: production
         ports:
             - "8000:8000"
-        depends_on:
-            - dev-postgres
-        networks:
-            - dev-network
-
-
-networks:
-    dev-network:
-        driver: bridge

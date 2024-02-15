@@ -7,11 +7,14 @@ import dotenv from "dotenv";
 let configObj: Config;
 let rawConfigObj: any;
 
-if (process.env.NODE_ENV == 'development') {
+if (!process.env.NODE_ENV) {
+	process.env.NODE_ENV = 'development';
 	const environment = process.env.NODE_ENV;
 	dotenv.config({path: `.env.${environment}`});
 }
 
+const environment = process.env.NODE_ENV;
+const projectId = process.env.PROJECT_ID;
 
 const client = new SecretManagerServiceClient();
 
@@ -22,7 +25,8 @@ const getSecret = async (projectId: string, env: string): Promise<any> => {
 		throw new Error("Secret data not found.");
 	}
 	const secretDataString = secretDataBuffer.toString();
-	return JSON.parse(secretDataString);
+	const secretData = JSON.parse(secretDataString);
+	return secretData;
 }
 
 export let PGDataSource: DataSource;
@@ -46,7 +50,7 @@ export const transform = (data: any, dir: string): Config => {
 			host: data['TYPEORM_HOST'] || 'localhost',
 			port: parseInt(data['TYPEORM_PORT']) || 5432,
 			username: data['TYPEORM_USERNAME'] || 'postgres',
-			password: data['TYPEORM_PASSWORD'] || 'postgres',
+			password: data['TYPEORM_PASSWORD'] || 'Freshcubi1998',
 			database: data['TYPEORM_DATABASE'] || 'postgres',
 			logging: data['TYPEORM_LOGGING'] === 'true' || true,
 			synchronize: data['TYPEORM_SYNCHRONIZE'] === 'true' || true,
@@ -69,7 +73,7 @@ export const transform = (data: any, dir: string): Config => {
 
 export const fetchConfig = async (dir: string): Promise<void> => {
 	rawConfigObj = process.env;
-	const data = await getSecret(rawConfigObj['SECRET_ID'], rawConfigObj['NODE_ENV']);
+	const data = await getSecret(projectId!, environment);
 	configObj = transform(data, dir);
 	PGDataSource = await new DataSource({
 		...configObj.typeOrm,

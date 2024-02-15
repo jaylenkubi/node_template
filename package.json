@@ -4,7 +4,8 @@
 	"description": "Platform API",
 	"main": "index.js",
 	"scripts": {
-		"start": "ts-node-dev --respawn platform/index.ts",
+		"dev": "ts-node-dev --respawn platform/index.ts",
+		"start": "pnpm run build && node dist/index.js",
 		"build": "tsc -p tsconfig.json",
 		"typeorm": "typeorm-ts-node-commonjs",
 		"spec:full-gen": "ts-node platform/config/apiDocs/fullGen.ts",
@@ -55,6 +56,7 @@
 		"prettier": "^3.0.3",
 		"react-router-dom": "^6.21.3",
 		"reflect-metadata": "^0.1.13",
+		"rimraf": "^5.0.5",
 		"routing-controllers": "^0.10.4",
 		"routing-controllers-openapi": "^4.0.0",
 		"swagger-ui-express": "^5.0.0",

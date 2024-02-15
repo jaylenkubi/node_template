@@ -47,6 +47,7 @@ specifiers:
   prettier: ^3.0.3
   react-router-dom: ^6.21.3
   reflect-metadata: ^0.1.13
+  rimraf: ^5.0.5
   routing-controllers: ^0.10.4
   routing-controllers-openapi: ^4.0.0
   swagger-ui-express: ^5.0.0
@@ -99,6 +100,7 @@ dependencies:
   prettier: 3.1.0
   react-router-dom: 6.21.3
   reflect-metadata: 0.1.13
+  rimraf: 5.0.5
   routing-controllers: 0.10.4_p4ywi7fdcrugq6nsanv77hac4q
   routing-controllers-openapi: 4.0.0_routing-controllers@0.10.4
   swagger-ui-express: 5.0.0_express@4.18.2
@@ -5149,6 +5151,14 @@ packages:
     hasBin: true
     dependencies:
       glob: 7.2.3
+    dev: false
+
+  /rimraf/5.0.5:
+    resolution: {integrity: sha512-CqDakW+hMe/Bz202FPEymy68P+G50RfMQK+Qo5YUqc9SPipvbGjCGKd0RSKEelbsfQuw3g5NZDSrlZZAJurH1A==}
+    engines: {node: '>=14'}
+    hasBin: true
+    dependencies:
+      glob: 10.3.10
     dev: false
 
   /rollup/4.9.6:
