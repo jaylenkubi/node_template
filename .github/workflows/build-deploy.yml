@@ -44,4 +44,4 @@ jobs:
 
     - name: Deploy to Cloud Run  
       run: |
-        gcloud run deploy node-template-service --image=europe-west2-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/node-template/backend-service:${{ github.sha }} --set-cloudsql-instances scenic-foundry-413622:europe-west2:thecube	--region=europe-west2 --set-env-vars=SECRET_ID=${{ secrets.SECRET_ID }}
+        gcloud run deploy node-template-service --image=europe-west2-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/node-template/backend-service:${{ github.sha }} --set-cloudsql-instances=scenic-foundry-413622:europe-west2:thecube-production	--region=europe-west2
