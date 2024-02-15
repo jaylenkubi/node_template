@@ -1,7 +1,6 @@
 import 'reflect-metadata';
 import {Body, Delete, Get, JsonController, Param, Post, Put, QueryParams, Req, UseAfter, UseBefore, UseInterceptor} from 'routing-controllers';
 import {ObjectLiteral} from 'typeorm';
-import {plural} from 'pluralize';
 import {capitalCase} from 'text-case';
 import {TRANSACTION_ID} from '../middlewares/transaction.middleware';
 import {AuthMiddleware} from "../middlewares/authentication.middleware";
@@ -10,6 +9,7 @@ import {Action, RuleInterface} from "../middlewares/next.acls";
 import {UserEntityType} from "../types/user.type";
 import {QueryOptions} from "../schemas/QueryOptions";
 import {OpenAPI, ResponseSchema} from "routing-controllers-openapi";
+import {plural} from "pluralize";
 
 export type RoutingControllerRole = { action: Action; subject: string };
 
