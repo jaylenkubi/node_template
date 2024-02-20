@@ -25,32 +25,26 @@ export class GenericCrudService<CI, EI extends ObjectLiteral > implements Generi
 	}
 
 	getById = async (id: number) : Promise<EI | null> => {
-		logRequest(`Attempting to get user with id: ${id}`)
 		return await this.getDb().findOneById(id)
 	}
 
 	getAll = async (): Promise<EI[]> => {
-		logRequest(`Attempting to get all users`)
 		return await this.getDb().findAll()
 	}
 
 	getByQuery = async (query: any): Promise<EI[]> => {
-		logRequest(`Attempting to get users with query: ${JSON.stringify(query)}`)
 		return await this.getDb().findByQuery(query)
 	}
 
 	create = async (payload: CI): Promise<EI> => {
-		logRequest(`Attempting to create user with payload: ${JSON.stringify(payload)}`)
 		return await this.getDb().create(payload)
 	}
 
 	update = async (id: number, payload: Partial<EI>): Promise<number | undefined> => {
-		logRequest(`Attempting to update user with id: ${id} and payload: ${JSON.stringify(payload)}`)
 		return await this.getDb().update(id, payload)
 	}
 
 	delete = async (id: number): Promise<number | undefined> => {
-		logRequest(`Attempting to delete user with id: ${id}`)
 		return await this.getDb().delete(id)
 	}
 }

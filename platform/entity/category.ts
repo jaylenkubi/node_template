@@ -36,6 +36,7 @@ export const CategoryController = () => buildCrudController<Category, CategoryEn
 	'category',
 	Subject.CATEGORY,
 	CategoryEntity,
+	Category,
 	rules,
 	aclMiddleware,
 	[],

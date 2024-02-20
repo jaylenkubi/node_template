@@ -1,7 +1,7 @@
 import {AutoMap} from "@automapper/classes";
 import {decorate, Mixin} from "ts-mixer";
 import {IsEmpty, IsInt, IsOptional, IsString, ValidateNested} from "class-validator";
-import {Column, Entity, JoinColumn, OneToOne} from "typeorm";
+import {Column, Entity, JoinColumn, ManyToOne, OneToOne} from "typeorm";
 import {SneakerEntity} from "./sneaker";
 import {Exclude, Type} from "class-transformer";
 import {BaseDBEntity} from "./baseDBEntity";
@@ -10,23 +10,27 @@ import {rules} from "../rules/core.rules";
 import {aclMiddleware} from "../middlewares/acl.middleware";
 import {Subject} from "../config/acls/subjects";
 import {getContextualEntityService} from "../helper/contextualEntityService";
+import {BrandEnitiy} from "./brand";
 
 
 export class SneakerImage {
+
 	@AutoMap()
-	@decorate(IsOptional({groups: ['update']}))
-	@decorate(OneToOne(() => SneakerEntity, {nullable: true}))
-	@decorate(IsInt())
-	@decorate(Column({type: 'int', nullable: true}))
-	sneakerId?: number
+	@decorate(IsOptional({groups: ["update"]}))
+	@decorate(ManyToOne(() => SneakerEntity,
+		(sneaker: SneakerEntity) => sneaker.sneakerImages,
+		{nullable: true}))
+	@decorate(ValidateNested())
+	@decorate(Type(() => SneakerEntity))
+	@decorate(IsOptional())
+	@decorate(JoinColumn({name: 'sneakerId'}))
+	sneaker?: SneakerEntity
 
 	@AutoMap()
 	@decorate(IsOptional({groups: ['update']}))
-	@decorate(OneToOne(() => SneakerEntity, {nullable: true}))
-	@decorate(ValidateNested())
-	@decorate(Type(() => SneakerEntity))
-	@decorate(JoinColumn({name: 'sneakerId'}))
-	sneaker?: SneakerEntity
+	@decorate(Column({type: 'int'}))
+	@decorate(IsInt())
+	sneakerId!: number;
 
 	@AutoMap()
 	@decorate(IsString())
@@ -46,6 +50,7 @@ export const SneakerImageController = () => buildCrudController<SneakerImage, Sn
 	'sneakerImage',
 	Subject.SNEAKER_IMAGE,
 	SneakerImageEntity,
+	SneakerImage,
 	rules,
 	aclMiddleware,
 	[],

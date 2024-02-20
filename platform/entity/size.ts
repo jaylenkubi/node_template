@@ -65,6 +65,7 @@ export const SizeController = () => buildCrudController<Size, SizeEntity>(
 	'size',
 	Subject.SNEAKER_SIZE,
 	SizeEntity,
+	Size,
 	rules,
 	aclMiddleware,
 	[],

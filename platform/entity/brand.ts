@@ -1,4 +1,4 @@
-import {Entity, OneToMany} from "typeorm"
+import {Column, Entity, OneToMany} from "typeorm"
 import {IsEmpty, IsOptional, IsString, ValidateNested} from "class-validator";
 import {decorate, Mixin} from "ts-mixer";
 import {Exclude, Type} from "class-transformer";
@@ -15,17 +15,19 @@ export class Brand {
 
 	@AutoMap()
 	@decorate(IsString())
+	@decorate(Column({type: "varchar"}))
 	@decorate(IsOptional({groups: ["update"]}))
 	name!: string
 
 	@AutoMap()
 	@decorate(IsString())
+	@decorate(Column({type: "varchar"}))
 	@decorate(IsOptional({groups: ["update"]}))
 	description!: string
 
 	@AutoMap()
 	@decorate(IsOptional({groups: ["update"]}))
-	@decorate(ValidateNested())
+	@decorate(ValidateNested({each: true}))
 	@decorate(OneToMany(() => SneakerEntity,
 		(sneaker: SneakerEntity) => sneaker.brand))
 	@decorate(Type(() => SneakerEntity))
@@ -44,6 +46,7 @@ export const BrandController = () => buildCrudController<Brand, BrandEnitiy>(
 	'brand',
 	Subject.BRAND,
 	BrandEnitiy,
+	Brand,
 	rules,
 	aclMiddleware,
 	[],

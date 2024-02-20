@@ -52,7 +52,7 @@ export class User {
 	age!: number
 
 	@AutoMap()
-	@decorate(IsInt())
+	@decorate(IsString())
 	@decorate(IsOptional({groups: ["update"]}))
 	@decorate(IsOptional())
 	@decorate(Column({type: "varchar", nullable: true}))
@@ -89,6 +89,7 @@ export const UserController = () => buildCrudController<User, UserEntity>(
 	'user',
 	Subject.USER,
 	UserEntity,
+	User,
 	rules,
 	aclMiddleware,
 	[],

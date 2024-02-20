@@ -5,7 +5,7 @@ const inputEncoding = 'utf8';
 const outputEncoding = 'hex';
 const ivLength = 16; // AES blocksize
 
-const key = Buffer.from('THE_CUBE_WE_ARE_THE_REALEST'); // key must be 32 bytes for aes256
+const key = Buffer.from('THE_CUBE_WE_ARE_THE_REALEST_IN_T'); // key must be 32 bytes for aes256
 const iv = crypto.randomBytes(ivLength);
 
 export const encrypt = (text: string) => {

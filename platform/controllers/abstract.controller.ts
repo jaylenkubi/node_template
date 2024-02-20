@@ -17,6 +17,7 @@ export const buildCrudController = <CI, EI extends ObjectLiteral>(
 	entityName: string,
 	subject: string,
 	Entity: any,
+	createClass: any,
 	rules: (user: UserEntityType, transactionId: string) => RuleInterface[],
 	aclMiddleware: (
 		roles: RoutingControllerRole[],
@@ -47,7 +48,6 @@ export const buildCrudController = <CI, EI extends ObjectLiteral>(
 		@ResponseSchema(Entity, {isArray: true})
 		@OpenAPI({summary: `Get ${plural(entityName)} by query`, operationId: `getByQuery${capitalCase(entityName.trim())}`})
 		@UseBefore(aclMiddleware([{action: Action.QUERY, subject: subject}], rules))
-
 		async getByQuery(@QueryParams() query: QueryOptions<EI>, @Req() req: any): Promise<EI[]> {
 			return await getContextualEntityService<CI, EI>(entityName, Entity, req.headers[TRANSACTION_ID]).getByQuery(query);
 

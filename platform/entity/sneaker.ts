@@ -1,5 +1,5 @@
-import {Column, Entity, JoinColumn, ManyToOne} from "typeorm"
-import {IsEmpty, IsEnum, IsInt, IsOptional, IsString, ValidateNested} from "class-validator";
+import {Column, Entity, JoinColumn, ManyToOne, OneToMany} from "typeorm"
+import {IsDate, IsEmpty, IsEnum, IsInt, IsOptional, IsString, ValidateNested} from "class-validator";
 import {decorate, Mixin} from "ts-mixer";
 import {Exclude, Type} from "class-transformer";
 import {BaseDBEntity} from "./baseDBEntity";
@@ -9,8 +9,9 @@ import {buildCrudController} from "../controllers/abstract.controller";
 import {Subject} from "../config/acls/subjects";
 import {rules} from "../rules/core.rules";
 import {aclMiddleware} from "../middlewares/acl.middleware";
-import {SneakerColourEnum, SneakerSizeEnum} from "../schemas/sneaker.schema";
+import {SneakerColourEnum} from "../schemas/sneaker.schema";
 import {BrandEnitiy} from "./brand";
+import {SneakerImageEntity} from "./sneakerImage";
 
 export class Sneaker {
 
@@ -33,12 +34,6 @@ export class Sneaker {
 	colour!: SneakerColourEnum
 
 	@AutoMap()
-	@decorate(IsString())
-	@decorate(IsOptional({groups: ["update"]}))
-	@decorate(IsEnum(SneakerSizeEnum))
-	size!: SneakerSizeEnum
-
-	@AutoMap()
 	@decorate(IsOptional({groups: ["update"]}))
 	@decorate(ManyToOne(() => BrandEnitiy,
 		(brand: BrandEnitiy) => brand.sneakers,
@@ -51,10 +46,9 @@ export class Sneaker {
 
 	@AutoMap()
 	@decorate(IsOptional({groups: ['update']}))
-	@decorate(Column({type: 'int', nullable: true}))
+	@decorate(Column({type: 'int'}))
 	@decorate(IsInt())
-	@decorate(IsOptional())
-	brandId?: number;
+	brandId!: number;
 
 	@AutoMap()
 	@decorate(IsInt({each: true}))
@@ -63,6 +57,19 @@ export class Sneaker {
 	@decorate(Column({type: "int", nullable: true, array: true}))
 	categoryIds?: number[]
 
+	@AutoMap()
+	@decorate(IsDate())
+	@decorate(IsOptional({groups: ["update"]}))
+	@decorate(Type(() => Date))
+	releaseDate!: Date
+
+	@AutoMap()
+	@decorate(IsOptional({groups: ["update"]}))
+	@decorate(ValidateNested({each: true}))
+	@decorate(OneToMany(() => SneakerImageEntity,
+		(sneakerImage: SneakerImageEntity) => sneakerImage.sneaker))
+	@decorate(Type(() => SneakerImageEntity))
+	sneakerImages?: SneakerImageEntity[]
 }
 
 @Entity({name: 'sneaker'})
@@ -76,6 +83,7 @@ export const SneakerController = () => buildCrudController<Sneaker, SneakerEntit
 	'sneaker',
 	Subject.SNEAKER,
 	SneakerEntity,
+	Sneaker,
 	rules,
 	aclMiddleware,
 	[],

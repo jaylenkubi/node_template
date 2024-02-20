@@ -2,13 +2,14 @@
 
 
 export enum SneakerColourEnum {
-	RED = 'RED',
-	GREEN = 'GREEN',
-	BLUE = 'BLUE',
-	WHITE = 'WHITE',
-	BLACK = 'BLACK',
-	YELLOW = 'YELLOW',
-	ORANGE = 'ORANGE'
+	RED = 'Red',
+	GREEN = 'Green',
+	BLUE = 'Blue',
+	WHITE = 'White',
+	BLACK = 'Black',
+	YELLOW = 'Yellow',
+	ORANGE = 'Orange',
+	GREY = 'Grey'
 }
 
 

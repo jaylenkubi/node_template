@@ -23,7 +23,7 @@ export const handleUserAuth = (user: UserEntity, payload: TokenInterface, next: 
 
 		const userString = JSON.stringify(enrichedUser);
 		const transactionId = req.headers[TRANSACTION_ID];
-		logger.info(`Passport Core - Setting sana user token to: ${userString} for transaction id: ${transactionId}`);
+		logger.info(`Passport Core - Setting the cube user token to: ${userString} for transaction id: ${transactionId}`);
 		Container.of(transactionId).set(THE_CUBE_USER_TOKEN, encrypt(userString));
 
 		return next(null, enrichedUser);
