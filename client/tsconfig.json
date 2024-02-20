@@ -16,5 +16,9 @@
 		"allowImportingTsExtensions": true,
 		"moduleResolution": "Node",
 		"jsx": "react-jsx",
-	 }
+	 },
+	"include": [
+		"src/**/*",
+		"../libraries/**/*"
+	]
 }
