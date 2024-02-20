@@ -1,3 +1,4 @@
+import React from "react";
 import {HeroCarousel} from "../components/hero.carousel.tsx";
 import {LatestProducts} from "../components/latestProducts.tsx";
 import {BelowRetailPrice} from "../components/belowRetailPrice.tsx";

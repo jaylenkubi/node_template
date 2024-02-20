@@ -2,7 +2,6 @@ import {Carousel} from "@mantine/carousel";
 import {Accordion, Button, Container, Flex, Grid, Group, Image, Select, Text, Divider, List} from "@mantine/core";
 import classes from "../styles/components/productCarousel.module.scss";
 import {useState} from "react";
-import {useGetAllSneaker} from "@ui-services/sneaker.ts";
 
 
 const data = {
@@ -21,8 +20,6 @@ const data = {
 }
 
 export function ProductPage() {
-	const {data: Sneaker} = useGetAllSneaker()
-	console.log("snekaer", Sneaker)
 	const [displayImage, setDisplayImage] = useState<string>(data.image1)
 	const slides = [data.image1, data.image2, data.image3, data.image4, data.image5].map((item) => (
 		<Carousel.Slide key={item}>

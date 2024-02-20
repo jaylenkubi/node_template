@@ -12,7 +12,7 @@
 		"strictPropertyInitialization": true,
 		"target": "esnext",
 		"module": "commonjs",
-		"rootDir": "./platform",
+		"rootDir": "./",
 		"declaration": true,
 		"allowJs": true,
 		"composite": true,
@@ -37,7 +37,7 @@
 	"include": [
 		"platform/**/*",
 		"package.json/**/*",
-		"client/**/*",
-		"libraries/**/*"
+		"libraries/**/*",
+		"client/**/*"
 	]
 }

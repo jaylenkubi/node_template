@@ -15,9 +15,6 @@
 		"forceConsistentCasingInFileNames": true,
 		"allowImportingTsExtensions": true,
 		"moduleResolution": "Node",
-		"jsx": "react-jsx"
-	},
-	"include": [
-		"src/**/*"
-	]
+		"jsx": "react-jsx",
+	 }
 }

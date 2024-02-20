@@ -5,6 +5,8 @@ specifiers:
   '@automapper/core': 8.7.7
   '@casl/ability': ^6.5.0
   '@google-cloud/secret-manager': ^5.0.1
+  '@tanstack/react-query': ^5.22.2
+  '@tanstack/react-query-devtools': ^5.24.0
   '@types/bcrypt': ^5.0.2
   '@types/bcryptjs': ^2.4.6
   '@types/body-parser': ^1.19.5
@@ -65,6 +67,8 @@ dependencies:
   '@automapper/core': 8.7.7
   '@casl/ability': 6.5.0
   '@google-cloud/secret-manager': 5.0.1
+  '@tanstack/react-query': 5.22.2
+  '@tanstack/react-query-devtools': 5.24.0_wyrlmam2orgcyyber676wpn7ly
   '@types/bcryptjs': 2.4.6
   '@types/jsonwebtoken': 9.0.5
   '@types/lodash': 4.14.202
@@ -1302,6 +1306,32 @@ packages:
       '@stoplight/types': 13.20.0
       '@stoplight/yaml-ast-parser': 0.0.48
       tslib: 2.6.2
+    dev: false
+
+  /@tanstack/query-core/5.22.2:
+    resolution: {integrity: sha512-z3PwKFUFACMUqe1eyesCIKg3Jv1mysSrYfrEW5ww5DCDUD4zlpTKBvUDaEjsfZzL3ULrFLDM9yVUxI/fega1Qg==}
+    dev: false
+
+  /@tanstack/query-devtools/5.24.0:
+    resolution: {integrity: sha512-pThim455t69zrZaQKa7IRkEIK8UBTS+gHVAdNfhO72Xh4rWpMc63ovRje5/n6iw63+d6QiJzVadsJVdPoodSeQ==}
+    dev: false
+
+  /@tanstack/react-query-devtools/5.24.0_wyrlmam2orgcyyber676wpn7ly:
+    resolution: {integrity: sha512-ae3TSg9hKSicLP6TZMj4hglLsLBaS8O3ex/mgHZNQ8yKCDLnVoLO1a9EqYWPzw2k+uaK5uMCKBAVbLVBLx93oA==}
+    peerDependencies:
+      '@tanstack/react-query': ^5.22.2
+      react: ^18.0.0
+    dependencies:
+      '@tanstack/query-devtools': 5.24.0
+      '@tanstack/react-query': 5.22.2
+    dev: false
+
+  /@tanstack/react-query/5.22.2:
+    resolution: {integrity: sha512-TaxJDRzJ8/NWRT4lY2jguKCrNI6MRN+67dELzPjNUlvqzTxGANlMp68l7aC7hG8Bd1uHNxHl7ihv7MT50i/43A==}
+    peerDependencies:
+      react: ^18.0.0
+    dependencies:
+      '@tanstack/query-core': 5.22.2
     dev: false
 
   /@tootallnate/once/2.0.0:
