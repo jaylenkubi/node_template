@@ -5,7 +5,7 @@
 	"main": "index.js",
 	"scripts": {
 		"dev": "ts-node-dev --respawn platform/index.ts",
-		"start": "pnpm run build && node dist/index.js",
+		"start": "pnpm run build && node dist/platform/index.js",
 		"build": "tsc -p tsconfig.json",
 		"typeorm": "typeorm-ts-node-commonjs",
 		"spec:full-gen": "ts-node platform/config/apiDocs/fullGen.ts",
