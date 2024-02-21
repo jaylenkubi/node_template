@@ -3,15 +3,19 @@ import {useForm} from "@mantine/form";
 import {useLogin} from "@ui-services/auth.ts";
 import {useEffect, useState} from "react";
 import {useAuthToken} from "../shared/hooks/useAuthToken.ts";
+import {useNavigate} from "react-router-dom";
+import {useAuthStore} from "../shared/stores/auth.store.ts";
 
 const specialChar = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/
 const upperCase = /[A-Z]/
-const passwordValidation = (value: string) => {
+export const passwordValidation = (value: string) => {
 	return specialChar.test(value) && upperCase.test(value) && value.length >= 8
 }
 
 export function Login() {
 	const [, setAuthToken] = useAuthToken()
+	const {validateUser} = useAuthStore()
+	const navigate = useNavigate()
 	const [rememberMe, setRememberMe] = useState(false)
 	const rememberMeLocalStorage = localStorage.getItem('rememberMe')
 
@@ -38,6 +42,9 @@ export function Login() {
 	const {mutate: login, status} = useLogin({
 		mutation: {
 			onSuccess: (data) => {
+				const {_id: userId, firstName, lastName, email, type} = data.user
+				setAuthToken(data.tokens.access.token)
+				validateUser({userId, firstName, lastName, email, type, authToken: data.tokens.access.token})
 				if (rememberMe) {
 					localStorage.setItem('rememberMe', 'true')
 					localStorage.setItem('email', form.values.email)
@@ -51,10 +58,7 @@ export function Login() {
 	})
 
 	const formSubmit = (values: any) => {
-		try {
-			login({data: values})
-		}catch (e) {
-		}
+		login({data: values})
 	}
 	return (
 		<form onSubmit={form.onSubmit((values) => formSubmit(values))}>
@@ -69,7 +73,7 @@ export function Login() {
 					<Anchor c={'black'} href="#" size="sm">Forgot password?</Anchor>
 				</Flex>
 				<Button my={'xl'} variant={'filled'} size={'md'} fullWidth type={'submit'} loading={status === 'pending'}>Login</Button>
-				<Button my={'xl'} variant={'outline'} size={'md'} fullWidth loading={status === 'pending'}>Sign up</Button>
+				<Button my={'xl'} variant={'outline'} size={'md'} fullWidth loading={status === 'pending'} onClick={() => navigate('/auth/sign-up')}>Sign up</Button>
 			</Box>
 		</form>
 	)

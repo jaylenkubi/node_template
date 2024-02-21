@@ -18,8 +18,9 @@ export class User {
 	@AutoMap()
 	@decorate(IsString())
 	@decorate(IsOptional({groups: ["update"]}))
+	@decorate(IsOptional())
 	@decorate(IsEnum(TitleType))
-	title!: TitleType
+	title?: TitleType
 
 	@AutoMap()
 	@decorate(IsString())
@@ -46,10 +47,11 @@ export class User {
 	password!: string
 
 	@AutoMap()
-	@decorate(IsInt())
+	@decorate(Type(() => Date))
+	@decorate(IsOptional())
 	@decorate(IsOptional({groups: ["update"]}))
-	@decorate(Column({type: "int"}))
-	age!: number
+	@decorate(Column({type: "date", nullable: true}))
+	dob?: Date
 
 	@AutoMap()
 	@decorate(IsString())
