@@ -1,7 +1,7 @@
 import Axios, { AxiosRequestConfig } from 'axios';
 
 // @ts-ignore
-export const AXIOS_INSTANCE = Axios.create({ baseURL: import.meta.env.THE_CUBE_API_URL }); // use your own URL here or environment variable
+export const AXIOS_INSTANCE = Axios.create({ baseURL: import.meta.env.VITE_THE_CUBE_API_URL }); // use your own URL here or environment variable
 
 let isObject = function (a: any) {
 	return !!a && a.constructor === Object;

@@ -2,7 +2,8 @@ import {BaseDbType} from "./base.db.type";
 
 export enum UserType {
 	ADMIN = 'ADMIN',
-	CUSTOMER = 'CUSTOMER'
+	CUSTOMER = 'CUSTOMER',
+	GUEST = 'GUEST'
 }
 
 export enum TitleType {

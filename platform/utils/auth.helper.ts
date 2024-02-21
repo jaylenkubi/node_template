@@ -15,6 +15,7 @@ import dayjs from "dayjs";
 import {generateToken, verifyToken} from "./token.helper";
 import jwt from "jsonwebtoken";
 import {AuthTokenResponseInterface, RegisterAndLoginResponseInterface, TokenInterface} from "../types/token.type";
+import {AuthController} from "../controllers/core/auth.controller";
 
 
 export const generatedPassword = (charLength: number) => {
@@ -192,3 +193,8 @@ export const validateAccessToken = async (accessToken: string): Promise<TokenInt
 		throw new UnauthorizedError('Token Not Valid');
 	}
 };
+
+export const RunWithElevatedPermissions = async <T>(func: () => Promise<T>, transactionId: string): Promise<T> => {
+	const authController = Container.get(AuthController);
+	return await runWithElevatedPermissions(func, transactionId, () => authController().login({email: process.env.systemAccountUsername!, password: process.env.systemAccountPassword!}, {}));
+}

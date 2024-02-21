@@ -1,5 +1,5 @@
 import cx from 'clsx';
-import {Badge, Button, Container, createTheme} from "@mantine/core";
+import {Badge, Button, Checkbox, Container, createTheme, PasswordInput, TextInput} from "@mantine/core";
 import classes from '../../styles/components/globalStyles.module.scss';
 
 export const appTheme: any = createTheme({
@@ -70,6 +70,21 @@ export const appTheme: any = createTheme({
 				root: cx({[classes.responsiveContainer]: size === 'responsive'}),
 			})
 		}),
+		TextInput: TextInput.extend({
+			classNames: {
+				input: classes.textInput
+			}
+		}),
+		PasswordInput: PasswordInput.extend({
+			classNames: {
+				input: classes.textInput
+			}
+		}),
+		Checkbox: Checkbox.extend({
+			classNames: {
+				input: classes.checkbox
+			}
+		})
 		// Button: {
 		// 	styles: ({ radius, colors }) => ({
 		// 		label: {

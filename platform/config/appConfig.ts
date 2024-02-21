@@ -18,6 +18,7 @@ import {logger} from "../helper/logger";
 export const appConfig: () => RoutingControllersOptions = () => ({
 	routePrefix: "/v1",
 	controllers: [UserController(), AuthController(), GenericTokenController(), SneakerController(), BrandController(), FavouriteController(), SizeController(), SneakerImageController(), CategoryController()],
+	cors: true,
 	middlewares: [TransactionMiddleware, ErrorMiddleware]
 })
 

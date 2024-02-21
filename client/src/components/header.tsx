@@ -10,8 +10,8 @@ export function Header() {
 			<Flex justify="space-between" h="100%" align={'center'}>
 				<Text onClick={() => navigate('/')}>The Cube</Text>
 				<Group>
-					<Button variant={'outline'} size={'xs'}>Sign up</Button>
-					<Button variant={'filled'} size={'xs'}>Log in</Button>
+					<Button variant={'outline'} size={'sm'} onClick={() => navigate('/auth/sign-up')}>Sign up</Button>
+					<Button variant={'filled'} size={'sm'}  onClick={() => navigate('/auth/login')}>Log in</Button>
 				</Group>
 			</Flex>
 		</Container>
