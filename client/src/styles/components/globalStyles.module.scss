@@ -11,12 +11,17 @@
 	@extend .appShell;
 }
 
+.appShellNavbar {
+	@extend .appShell;
+	padding: var(--mantine-spacing-xl)
+}
+
 .appShellMain {
 	@extend .appShell;
 }
 
 .button {
-
+	border-radius: var(--mantine-radius-xl);
 	&[data-variant="filled"] {
 		background-color: var(--mantine-color-neutral-0);
 		color: var(--mantine-color-neutral-1);
@@ -64,14 +69,12 @@
 	&[data-variant="outline"] {
 		color: var(--mantine-color-neutral-0);
 		border: 1px solid var(--mantine-color-neutral-0);
-		border-radius: 50px;
 		cursor: pointer;
 	}
 
 	&[data-variant="navBadge"] {
 		color: var(--mantine-color-neutral-0);
 		border: 1px solid var(--mantine-color-neutral-0);
-		border-radius: 50px;
 		background-color: var(--mantine-color-neutral-1);
 		cursor: pointer;
 

@@ -1,5 +1,4 @@
 
-
 .logo {
 	font-family: 'Inter', sans-serif;
 	color: var(--mantine-color-primary-4);
@@ -7,9 +6,14 @@
 
 
 .mainSection {
-	padding: var(--mantine-spacing-xl);
+	padding: var(--mantine-spacing-xl) var(--mantine-spacing-sm);
 }
 
 .badgeSection {
-	padding: var(--mantine-spacing-lg);
+	//padding: var(--mantine-spacing-lg);
+	display: none;
+
+	@media (min-width: 768px) {
+		display: block;
+	}
 }
