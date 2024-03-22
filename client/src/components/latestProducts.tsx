@@ -54,10 +54,8 @@ export function LatestProducts() {
 	useEffect(() => {
 		if (isSmallScreen) {
 			setMaxProducts(4);
-		} else if (isMediumScreen) {
+		} else {
 			setMaxProducts(6);
-		} else if (isLargeScreen) {
-			setMaxProducts(data.length);
 		}
 	}, [isSmallScreen, isMediumScreen, isLargeScreen]);
 

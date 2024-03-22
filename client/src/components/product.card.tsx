@@ -22,7 +22,7 @@ export function ProductCard({imageUrl, brand, title, price}: CardProps) {
 			</Card.Section>
 			<Grid style={{height: "100%"}}>
 				<Grid.Col>
-					<Text className={classes.productCardCopy}>
+					<Text className={classes.productCardBrand}>
 						{brand}
 					</Text>
 				</Grid.Col>

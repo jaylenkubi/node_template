@@ -14,8 +14,8 @@ export function AppWrapper() {
 			header={
 				{
 					height: {
-						base: 70,
-						sm: 130
+						base: 60,
+						sm: 60
 					}
 				}
 			}
@@ -28,7 +28,9 @@ export function AppWrapper() {
 				<NavBar/>
 			</AppShell.Navbar>
 			<AppShell.Main className={classes.appShellMain}>
-				<Outlet/>
+				<div className={classes.bodyContent}>
+					<Outlet/>
+				</div>
 			</AppShell.Main>
 			<Footer/>
 		</AppShell>

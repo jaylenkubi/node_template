@@ -3,11 +3,11 @@ import {Badge, Button, Checkbox, Container, createTheme, PasswordInput, TextInpu
 import classes from '../../styles/components/globalStyles.module.scss';
 
 export const appTheme: any = createTheme({
-	fontFamily: 'Inter, sans-serif',
-	fontFamilyMonospace: 'JetBrains Mono, monospace',
+	fontFamily: 'Roboto, sans-serif',
+	fontFamilyMonospace: 'Ojuju, sans-serif',
 	autoContrast: true,
 	headings: {
-		fontFamily: 'Inter, sans-serif',
+		fontFamily: 'Roboto, sans-serif',
 		sizes: {
 			h1: {fontSize: '2.25rem', lineHeight: '3rem'},
 			h2: {fontSize: '1.75rem', lineHeight: '2.5rem'},
@@ -48,8 +48,9 @@ export const appTheme: any = createTheme({
 		xs: '0.25rem',
 		sm: '0.5rem',
 		md: '0.75rem',
-		lg: '1rem',
-		xl: '1.25rem'
+		lg: '1.125rem',
+		xl: '1.5rem',
+		xxl: '2rem'
 	},
 
 	primaryColor: 'blue',
@@ -68,6 +69,7 @@ export const appTheme: any = createTheme({
 		Container: Container.extend({
 			classNames: (_, {size}) => ({
 				root: cx({[classes.responsiveContainer]: size === 'responsive'}),
+
 			})
 		}),
 		TextInput: TextInput.extend({
@@ -84,7 +86,8 @@ export const appTheme: any = createTheme({
 			classNames: {
 				input: classes.checkbox
 			}
-		})
+		}),
+
 		// Button: {
 		// 	styles: ({ radius, colors }) => ({
 		// 		label: {

@@ -27,7 +27,18 @@ const data = [
 		brand: "New Balance",
 		title: "New Balance 550 Mid White Grey",
 		price: "£95"
-	}
+	},
+	{
+		imageUrl: "https://laced.imgix.net/products/98ea3b6c-bb97-4df9-99d2-76f1bff04f9e.jpg?auto=format&fit=crop&w=442",
+		brand: "Air Jordan",
+		title: "Air Jordan 3 Midnight Navy",
+		price: "£200"
+	}, {
+		imageUrl: "https://laced.imgix.net/products/5b5f1bb4-0656-4384-aa78-c43c9b3a9018.jpg?auto=format&fit=crop&w=442",
+		brand: "Adidas",
+		title: "Adidas Handball Spezial Clear Pink Arctic Night Womens",
+		price: "£100"
+	},
 ]
 
 export function BelowRetailPrice() {
@@ -37,10 +48,8 @@ export function BelowRetailPrice() {
 	useEffect(() => {
 		if (isSmallScreen) {
 			setMaxProducts(4)
-		} else if (isMediumScreen) {
-			setMaxProducts(3);
-		}else if (isLargeScreen) {
-			setMaxProducts(data.length);
+		} else {
+			setMaxProducts(6);
 		}
 	}, [isSmallScreen, isMediumScreen, isLargeScreen]);
 

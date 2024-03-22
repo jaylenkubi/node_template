@@ -15,20 +15,20 @@ export function Header() {
 						<Burger opened={navbarOpen} onClick={toggleNavbar} hiddenFrom="sm" size="sm"/>
 						<Text onClick={() => navigate('/')}>The Cube</Text>
 					</Group>
-					<Flex>
+					<div className={classes.badgeSection}>
+						<Group>
+							<Button variant={'subtle'}>Air Jordan</Button>
+							<Button variant={'subtle'}>Nike</Button>
+							<Button variant={'subtle'}>New Balance</Button>
+							<Button variant={'subtle'}>Yeezy</Button>
+							<Button variant={'subtle'}>Air Jordan 4</Button>
+							<Button variant={'subtle'}>Air Jordan 1</Button>
+						</Group>
+					</div>
+					<Group>
 						<Button variant={'subtle'} size={'sm'} onClick={() => navigate('/auth/sign-up')}>Sign up</Button>
 						<Button variant={'subtle'} size={'sm'} onClick={() => navigate('/auth/login')}>Log in</Button>
-					</Flex>
-				</Flex>
-			</div>
-			<div  className={classes.badgeSection}>
-				<Flex justify={'space-around'}>
-					<Badge variant={'navBadge'}>Air Jordan</Badge>
-					<Badge variant={'navBadge'}>Nike</Badge>
-					<Badge variant={'navBadge'}>New Balance</Badge>
-					<Badge variant={'navBadge'}>Yeezy</Badge>
-					<Badge variant={'navBadge'}>Air Jordan 4</Badge>
-					<Badge variant={'navBadge'}>Air Jordan 1</Badge>
+					</Group>
 				</Flex>
 			</div>
 		</>
