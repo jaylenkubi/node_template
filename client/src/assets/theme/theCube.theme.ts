@@ -1,10 +1,12 @@
 import cx from 'clsx';
-import {Badge, Button, Checkbox, Container, createTheme, PasswordInput, TextInput} from "@mantine/core";
+import {Badge, Button, Checkbox, Container, createTheme, PasswordInput, Select, TextInput} from "@mantine/core";
 import classes from '../../styles/components/globalStyles.module.scss';
 
 export const appTheme: any = createTheme({
 	fontFamily: 'Roboto, sans-serif',
-	fontFamilyMonospace: 'Ojuju, sans-serif',
+	fontFamilyMonospace: 'Roboto, sans-serif',
+	fontSmoothing: true,
+	scale: 0.875,
 	autoContrast: true,
 	headings: {
 		fontFamily: 'Roboto, sans-serif',
@@ -87,7 +89,11 @@ export const appTheme: any = createTheme({
 				input: classes.checkbox
 			}
 		}),
-
+		Select: Select.extend({
+			classNames:{
+				root: classes.select,
+			}
+		})
 		// Button: {
 		// 	styles: ({ radius, colors }) => ({
 		// 		label: {

@@ -36,7 +36,7 @@ const data = [
 	}, {
 		imageUrl: "https://laced.imgix.net/products/5b5f1bb4-0656-4384-aa78-c43c9b3a9018.jpg?auto=format&fit=crop&w=442",
 		brand: "Adidas",
-		title: "Adidas Handball Spezial Clear Pink Arctic Night Womens",
+		title: "Adidas Handball Spezial Clear Pink Arctic Night ",
 		price: "£100"
 	},
 ]

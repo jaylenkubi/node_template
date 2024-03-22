@@ -29,7 +29,7 @@ function StaffPickCard({source}: StaffPicksProps) {
 export function StaffPicks() {
 	const cards = data.map((item) =><Grid.Col span={{base: 6, sm: 4, md: 3}}> <StaffPickCard key={item.imageUrl} source={item.imageUrl} /></Grid.Col>)
 	return (
-		<Grid gutter={'md'}  mt={'40px'}>
+		<Grid gutter={'md'} mt={'xxl'}>
 			<Grid.Col>
 					<Title order={5}>Staff Picks</Title>
 			</Grid.Col>

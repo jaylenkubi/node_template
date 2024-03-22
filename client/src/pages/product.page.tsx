@@ -1,5 +1,5 @@
 import {Carousel} from "@mantine/carousel";
-import {Accordion, Button, Container, Flex, Grid, Group, Image, Select, Text, Divider, List} from "@mantine/core";
+import {Accordion, Button, Container, Flex, Grid, Group, Image, Select, Text, Divider, List, Title, Stack, useMantineTheme} from "@mantine/core";
 import classes from "../styles/components/productCarousel.module.scss";
 import {useState} from "react";
 import {useGetAllSneaker} from "@ui-services/sneaker.ts";
@@ -21,6 +21,7 @@ const data = {
 }
 
 export function ProductPage() {
+	const theme = useMantineTheme();
 	const sneakers = useGetAllSneaker()
 	const [displayImage, setDisplayImage] = useState<string>(data.image1)
 	const slides = [data.image1, data.image2, data.image3, data.image4, data.image5].map((item) => (
@@ -30,15 +31,15 @@ export function ProductPage() {
 	))
 	return (
 		<Grid className={classes.productGrid}>
-			<Grid.Col span={{base: 12, lg: 6}}>
-				<Container my="lg" className={classes.productGridCarouselHeader}>
+			<Grid.Col span={{base: 12, lg: 6}} >
+				<div className={classes.productGridCarouselHeader}>
 					<Text>
 						Adidas
 					</Text>
-					<Text fz="25px" fw="500">
+					<Title order={3}>
 						{(data.title).toUpperCase()}
-					</Text>
-				</Container>
+					</Title>
+				</div>
 				<Carousel my="lg" loop withIndicators className={classes.productDisplayCarousel}>
 					{slides}
 				</Carousel>
@@ -67,42 +68,43 @@ export function ProductPage() {
 					</Grid.Col>
 				</Grid>
 			</Grid.Col>
-			<Grid.Col span={{base: 12, lg: 6}}>
+			<Grid.Col span={{base: 12, lg: 5}} className={classes.productSecondGrid}>
 				<Grid>
 					<Grid.Col>
-						<Container my="lg" className={classes.productSecondGridHeader}>
+						<div className={classes.productSecondGridHeader}>
 							<Text>
 								Adidas
-							</Text>
-							<Text fz="25px" fw="500">
-								{(data.title).toUpperCase()}
-							</Text>
-						</Container>
-						<Container mb="md">
-							<Select
-								size="md"
-								label="Select Size"
-								placeholder="Choose Size"
-								data={['5', '6', '7', '8', '9', '10', '11', '12']}
-							/>
-						</Container>
+							</Text><Title order={3}>
+							{(data.title).toUpperCase()}
+						</Title>
+						</div>
 					</Grid.Col>
-					<Grid.Col>
-						<Container mb="md">
-							<Text fz="25px" fw="500">
+					<Grid.Col >
+						<Select
+							styles={{label: {fontSize: '14px', fontWeight: '400', borderRadius: '0'}}}
+							size={'sm'}
+							label="Select Size"
+							placeholder="Choose Size"
+							data={['5', '6', '7', '8', '9', '10', '11', '12']}
+						/>
+					</Grid.Col>
+					<Grid.Col  mt={'lg'}>
+							<Text fz={'24'}  fw={'500'}>
 								£{data.price}
 							</Text>
-						</Container>
 					</Grid.Col>
-					<Grid.Col>
-						<Container>
-							<Button size={'md'} fullWidth variant={'filled'}>
+					<Grid.Col  mt={'lg'}>
+						<Group grow>
+
+							<Button size={'sm'}  variant={'outline'}>
+								BUY NOW
+							</Button>
+							<Button size={'sm'} variant={'filled'}>
 								ADD TO BAG
 							</Button>
-						</Container>
+						</Group>
 					</Grid.Col>
-					<Grid.Col>
-						<Container my="lg">
+					<Grid.Col mt={'xl'}>
 							<Accordion>
 								<Accordion.Item value="premiumDelivery">
 									<Accordion.Control>
@@ -156,23 +158,19 @@ export function ProductPage() {
 								</Accordion.Panel>
 							</Accordion.Item>
 							</Accordion>
-						</Container>
 					</Grid.Col>
-					<Grid.Col>
-						<Container mb="lg">
-							<Text fz="20px" fw={500}>
+					<Grid.Col mt={'xxl'}>
+							<Title order={4}>
 								Description
-							</Text>
+							</Title>
 							<Text>
 								{data.description}
 							</Text>
-						</Container>
 					</Grid.Col>
-					<Grid.Col>
-						<Container mb="50px">
-							<Text fz="20px" fw={500}>
+					<Grid.Col  mt={'xxl'}>
+							<Title order={4}>
 								Details
-							</Text>
+							</Title>
 							<Flex justify={'space-between'} mt={'sm'}>
 								<Text>Brand</Text>
 								<Text>{data.brand}</Text>
@@ -192,7 +190,6 @@ export function ProductPage() {
 								<Text>Colour</Text>
 								<Text>{data.colour}</Text>
 							</Flex>
-						</Container>
 					</Grid.Col>
 				</Grid>
 			</Grid.Col>

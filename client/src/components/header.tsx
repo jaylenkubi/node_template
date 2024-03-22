@@ -17,17 +17,17 @@ export function Header() {
 					</Group>
 					<div className={classes.badgeSection}>
 						<Group>
-							<Button variant={'subtle'}>Air Jordan</Button>
-							<Button variant={'subtle'}>Nike</Button>
-							<Button variant={'subtle'}>New Balance</Button>
-							<Button variant={'subtle'}>Yeezy</Button>
-							<Button variant={'subtle'}>Air Jordan 4</Button>
-							<Button variant={'subtle'}>Air Jordan 1</Button>
+							<Button variant={'subtle'}><Text>Air Jordan</Text></Button>
+							<Button variant={'subtle'}><Text>Nike</Text></Button>
+							<Button variant={'subtle'}><Text>New Balance</Text></Button>
+							<Button variant={'subtle'}><Text>Yeezy</Text></Button>
+							<Button variant={'subtle'}><Text>Air Jordan 4</Text></Button>
+							<Button variant={'subtle'}><Text>Air Jordan 1</Text></Button>
 						</Group>
 					</div>
 					<Group>
-						<Button variant={'subtle'} size={'sm'} onClick={() => navigate('/auth/sign-up')}>Sign up</Button>
-						<Button variant={'subtle'} size={'sm'} onClick={() => navigate('/auth/login')}>Log in</Button>
+						<Button variant={'subtle'} size={'sm'} onClick={() => navigate('/auth/sign-up')}><Text>Sign up</Text></Button>
+						<Button variant={'subtle'} size={'sm'} onClick={() => navigate('/auth/login')}><Text>Log in</Text></Button>
 					</Group>
 				</Flex>
 			</div>

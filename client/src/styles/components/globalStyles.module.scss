@@ -21,9 +21,12 @@
 	@extend .appShell;
 }
 
-.bodyContent{
+.bodyContent {
 	@extend .appShell;
-	max-width: 1600px;
+
+	@media(min-width: 1200px) {
+		max-width: 1200px;
+	}
 	margin: 0 auto;
 }
 
@@ -98,7 +101,16 @@
 
 .textInput {
 	border: 2px solid var(--mantine-color-neutral-0);
+	border-radius: 0 ;;
 	background-color: var(--mantine-color-neutral-1);
+}
+
+.select {
+	&[data-size='sm'] {
+		& .label {
+			font-size: 20px;
+		}
+	}
 }
 
 .ProductCard {
@@ -118,14 +130,11 @@
 
 .productCardCopy {
 	font-size: var(--mantine-font-size-sm);
-	font-weight: 500;
+	color: darkgrey;
 }
 
 .productCardPrice {
-	//@extend .productCardCopy;
 	font-size: var(--mantine-font-size-md);
-
-	font-weight: bold;
 }
 
 .ProductCardImageSection {
@@ -141,7 +150,7 @@
 .footer {
 	background-color: var(--mantine-color-neutral-0);
 	color: #d3d3d3;
-	padding: 20px 12px;
+	padding: var(--mantine-spacing-xl);
 	min-height: 200px;
 }
 
