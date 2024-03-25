@@ -8,11 +8,11 @@ export default defineConfig({
 		port: 5173
 	},
 	plugins: [react(), tsconfigPaths()],
-	resolve: {
-		alias: {
-			'@ui-services': path.resolve(__dirname, '/libraries/services/ui-services'),
-		},
-	},
+	// resolve: {
+	// 	alias: {
+	// 		'@ui-services': path.resolve(__dirname, '/libraries/services/ui-services'),
+	// 	},
+	// },
 	css: {
 		preprocessorOptions: {
 			scss: {
