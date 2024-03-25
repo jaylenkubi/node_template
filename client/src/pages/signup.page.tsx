@@ -7,6 +7,7 @@ import {UserEntityType} from "@ui-services/models";
 import {useAuthToken} from "../shared/hooks/useAuthToken.ts";
 import {PasswordStrength} from "../components/passwordStrength.tsx";
 import {useAuthStore} from "../shared/stores/auth.store.ts";
+import classes from '../styles/components/loginAndRegister.module.scss';
 
 
 export function Signup() {
@@ -46,7 +47,7 @@ export function Signup() {
 	}
 	return (
 		<form onSubmit={form.onSubmit((values) => formSubmit(values))}>
-			<Box w={'80%'} m={'auto'}>
+			<Box className={classes.loginAndRegisterBox}>
 				<Text mt={'xl'} fz={'30px'}>Signup</Text>
 				<Text mt={'xl'}>First Name</Text>
 				<TextInput size={'md'} {...form.getInputProps('firstName')}/>

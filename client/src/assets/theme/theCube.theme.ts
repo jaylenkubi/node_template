@@ -166,6 +166,6 @@ export const appTheme: any = createTheme({
 
 	},
 	colors: {
-		neutral: ['#000000', '#f2f8fc', '#CDD0E2', '#ADB7D7', '#B788D5', '#C4CDE5', '', '', '', '', ''],
+		neutral: ['#000000', '#f2f8fc', '#9b9b9b', '#ADB7D7', '#B788D5', '#C4CDE5', '', '', '', '', ''],
 	}
 })

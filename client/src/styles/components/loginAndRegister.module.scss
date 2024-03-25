@@ -1,0 +1,12 @@
+
+
+
+.loginAndRegisterBox {
+	width: 80%;
+	margin: 0 auto;
+
+	@media(min-width: 1200px) {
+		width: 60%;
+		max-width: 800px;
+	}
+}

@@ -1,10 +1,10 @@
-import {AppShell} from "@mantine/core";
-import classes from "../styles/components/globalStyles.module.scss";
-import {Header} from "./header.tsx";
-import {Footer} from "./footer.tsx";
-import {Outlet} from "react-router-dom";
-import {useHeaderNavbarStore} from "../shared/stores/headerNavbar.store.ts";
-import {NavBar} from "./navBar.tsx";
+import { AppShell } from '@mantine/core';
+import classes from '../styles/components/globalStyles.module.scss';
+import { Header } from './header.tsx';
+import { Footer } from './footer.tsx';
+import { Outlet } from 'react-router-dom';
+import { useHeaderNavbarStore } from '../shared/stores/headerNavbar.store.ts';
+import { NavBar } from './navBar.tsx';
 
 
 export function AppWrapper() {
@@ -19,7 +19,7 @@ export function AppWrapper() {
 					}
 				}
 			}
-			navbar={{width: 300, breakpoint: 'sm', collapsed: {desktop: true, mobile: !navbarOpen}}}
+			navbar={{width: 300, breakpoint: 'md', collapsed: {desktop: true, mobile: !navbarOpen}}}
 		>
 			<AppShell.Header className={classes.appShellHeader}>
 				<Header/>
@@ -31,8 +31,9 @@ export function AppWrapper() {
 				<div className={classes.bodyContent}>
 					<Outlet/>
 				</div>
+					<Footer/>
 			</AppShell.Main>
-			<Footer/>
+
 		</AppShell>
 
 	)
