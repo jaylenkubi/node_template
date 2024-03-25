@@ -11,11 +11,11 @@
 		"allowImportingTsExtensions": true,
 		"moduleResolution": "Node",
 		"jsx": "react-jsx",
-		"rootDir": "./",
-		"baseUrl": "./src",
+		"rootDir": "../",
+		"baseUrl": ".",
 		"paths": {
 			"@ui-services/*": ["../libraries/services/ui-services/*"]
 		}
 	},
-	"include": ["src/**/*"]
+	"include": ["src/**/*", "../libraries/**/*"]
 }
