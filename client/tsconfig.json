@@ -16,12 +16,7 @@
 		"noEmit": true,
 		"allowImportingTsExtensions": true,
 		"moduleResolution": "Node",
-		"jsx": "react-jsx",
-		"paths": {
-			"@ui-services/*": [
-				"../libraries/services/ui-services/*"
-			]
-		}
+		"jsx": "react-jsx"
 	},
 	"include": [
 		"src/**/*",
