@@ -1,4 +1,5 @@
 {
+//	"extends": "../tsconfig.json",
 	"compilerOptions": {
 		"types": ["vite/client"],
 		"composite": true,
@@ -10,7 +11,8 @@
 		"allowImportingTsExtensions": true,
 		"moduleResolution": "Node",
 		"jsx": "react-jsx",
-		"baseUrl": "./src",
+		"rootDir": "../",
+//		"baseUrl": ".",
 		"paths": {
 			"@ui-services/*": ["../libraries/services/ui-services/*"]
 		}

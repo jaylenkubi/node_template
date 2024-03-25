@@ -2,7 +2,7 @@ import {Carousel} from "@mantine/carousel";
 import {Accordion, Button, Container, Flex, Grid, Group, Image, Select, Text, Divider, List, Title, Stack, useMantineTheme} from "@mantine/core";
 import classes from "../styles/components/productCarousel.module.scss";
 import {useState} from "react";
-import {useGetAllSneaker} from "@ui-services/sneaker.ts";
+import { useGetAllSneaker } from "@ui-services/sneaker";
 
 
 const data = {
