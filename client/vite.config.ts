@@ -10,7 +10,7 @@ export default defineConfig({
 	plugins: [react(), tsconfigPaths()],
 	resolve: {
 		alias: {
-			'@ui-services': path.resolve(__dirname, '../libraries/services/ui-services'),
+			'@ui-services': path.resolve(__dirname, '/libraries/services/ui-services'),
 		},
 	},
 	css: {
