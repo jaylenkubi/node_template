@@ -1,20 +1,30 @@
 {
 	"extends": "../tsconfig.json",
 	"compilerOptions": {
-		"types": ["vite/client"],
+		"types": [
+			"vite/client"
+		],
 		"composite": true,
 		"useDefineForClassFields": true,
-		"lib": ["DOM", "DOM.Iterable", "ESNext"],
+		"lib": [
+			"DOM",
+			"DOM.Iterable",
+			"ESNext"
+		],
 		"skipLibCheck": true,
 		"forceConsistentCasingInFileNames": true,
 		"noEmit": true,
 		"allowImportingTsExtensions": true,
 		"moduleResolution": "Node",
 		"jsx": "react-jsx",
-		"baseUrl": ".",
 		"paths": {
-			"@ui-services/*": ["../libraries/services/ui-services/*"]
+			"@ui-services/*": [
+				"../libraries/services/ui-services/*"
+			]
 		}
 	},
-	"include": ["src/**/*", "../libraries/**/*"]
+	"include": [
+		"src/**/*",
+		"../libraries/**/*"
+	]
 }
