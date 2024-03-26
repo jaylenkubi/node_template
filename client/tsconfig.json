@@ -1,5 +1,4 @@
 {
-//	"extends": "../tsconfig.json",
 	"compilerOptions": {
 		"types": ["vite/client"],
 		"composite": true,
@@ -11,10 +10,10 @@
 		"allowImportingTsExtensions": true,
 		"moduleResolution": "Node",
 		"jsx": "react-jsx",
-		"rootDir": ".",
-		"baseUrl": "./src",
+		"rootDir": "./",
+		"baseUrl": "./",
 		"paths": {
-			"@ui-services/*": ["./libraries/services/ui-services/*"]
+			"@ui-services/*": ["libraries/services/ui-services/*"]
 		}
 	},
 	"include": ["src/**/*", "libraries/**/*"]
