@@ -13,7 +13,6 @@ dist-ssr
 *.local
 
 build/
-libraries/services/ui-services
 
 # Editor directories and files
 .vscode/*
