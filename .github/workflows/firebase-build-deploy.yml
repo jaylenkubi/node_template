@@ -21,6 +21,7 @@ jobs:
               run: |
                   cd client  
                   CI=false pnpm run build
+              working-directory: ./
             - name: Archive Production Artifact
               uses: actions/upload-artifact@v2
               with:

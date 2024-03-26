@@ -14,7 +14,7 @@
 		"rootDir": ".",
 		"baseUrl": ".",
 		"paths": {
-			"@ui-services/*": ["libraries/services/ui-services/*"]
+			"@ui-services/*": ["./libraries/services/ui-services/*"]
 		}
 	},
 	"include": ["src/**/*", "libraries/**/*"]
