@@ -23,11 +23,6 @@
 		"emitDecoratorMetadata": true,
 		"noUnusedLocals": false,
 		"noUnusedParameters": false,
-		"paths": {
-			"@ui-services/*": [
-				"libraries/services/ui-services/*"
-			]
-		}
 	},
 	"ts-node": {
 		"compilerOptions": {
@@ -37,7 +32,6 @@
 	"include": [
 		"platform/**/*",
 		"package.json",
-		"libraries/**/*",
 		"client/**/*"
 	]
 }

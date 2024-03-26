@@ -2,8 +2,8 @@ module.exports = {
 	uiClient: {
 		output: {
 			mode: 'tags',
-			target: '../libraries/services/ui-services',
-			schemas: '../libraries/services/ui-services/models',
+			target: '../client/libraries/services/ui-services',
+			schemas: '../client/libraries/services/ui-services/models',
 			client: 'react-query',
 			mock: false,
 			override: {
@@ -16,7 +16,7 @@ module.exports = {
 					}
 				},
 				mutator: {
-					path: '../libraries/services/ui-services/custom-instance-ui.ts',
+					path: '../client/libraries/services/ui-services/custom-instance-ui.ts',
 					name: 'customInstance'
 				}
 			}
