@@ -31,14 +31,10 @@ export function ProductPage() {
 	))
 	return (
 		<Grid className={classes.productGrid}>
-			<Grid.Col span={{base: 12, lg: 6}} >
+			<Grid.Col span={{ base: 12, lg: 8 }}>
 				<div className={classes.productGridCarouselHeader}>
-					<Text>
-						Adidas
-					</Text>
-					<Title order={3}>
-						{(data.title).toUpperCase()}
-					</Title>
+					<Text>Adidas</Text>
+					<Title order={3}>{data.title.toUpperCase()}</Title>
 				</div>
 				<Carousel my="lg" loop withIndicators className={classes.productDisplayCarousel}>
 					{slides}
@@ -46,57 +42,53 @@ export function ProductPage() {
 				<Grid className={classes.productDisplayGrid}>
 					<Grid.Col span={2}>
 						<Grid>
-							<Grid.Col>
-								<Image src={data.image1} className={classes.productSelectImage} onClick={() => setDisplayImage((data.image1))}/>
+							<Grid.Col mb={'lg'}>
+								<Image src={data.image1} className={classes.productSelectImage} onClick={() => setDisplayImage(data.image1)} />
 							</Grid.Col>
-							<Grid.Col>
-								<Image src={data.image2} className={classes.productSelectImage} onClick={() => setDisplayImage((data.image2))}/>
+							<Grid.Col mb={'lg'}>
+								<Image src={data.image2} className={classes.productSelectImage} onClick={() => setDisplayImage(data.image2)} />
 							</Grid.Col>
-							<Grid.Col>
-								<Image src={data.image3} className={classes.productSelectImage} onClick={() => setDisplayImage((data.image3))}/>
+							<Grid.Col mb={'lg'}>
+								<Image src={data.image3} className={classes.productSelectImage} onClick={() => setDisplayImage(data.image3)} />
 							</Grid.Col>
-							<Grid.Col>
-								<Image src={data.image4} className={classes.productSelectImage} onClick={() => setDisplayImage((data.image4))}/>
+							<Grid.Col mb={'lg'}>
+								<Image src={data.image4} className={classes.productSelectImage} onClick={() => setDisplayImage(data.image4)} />
 							</Grid.Col>
-							<Grid.Col>
-								<Image src={data.image5} className={classes.productSelectImage} onClick={() => setDisplayImage((data.image5))}/>
+							<Grid.Col mb={'lg'}>
+								<Image src={data.image5} className={classes.productSelectImage} onClick={() => setDisplayImage(data.image5)} />
 							</Grid.Col>
 						</Grid>
 					</Grid.Col>
 					<Grid.Col span={10}>
-						<Image src={displayImage}/>
+						<Image src={displayImage} h={720} w={'100%'} alt={data.title}/>
 					</Grid.Col>
 				</Grid>
 			</Grid.Col>
-			<Grid.Col span={{base: 12, lg: 5}} className={classes.productSecondGrid}>
+			<Grid.Col span={{ base: 12, lg: 4 }} className={classes.productSecondGrid}>
 				<Grid>
 					<Grid.Col>
 						<div className={classes.productSecondGridHeader}>
-							<Text>
-								Adidas
-							</Text><Title order={3}>
-							{(data.title).toUpperCase()}
-						</Title>
+							<Text>Adidas</Text>
+							<Title order={3}>{data.title.toUpperCase()}</Title>
 						</div>
 					</Grid.Col>
-					<Grid.Col >
+					<Grid.Col mt={'lg'}>
 						<Select
-							styles={{label: {fontSize: '14px', fontWeight: '400', borderRadius: '0'}}}
+							styles={{ label: { fontSize: '14px', fontWeight: '400', borderRadius: '0' } }}
 							size={'sm'}
 							label="Select Size"
 							placeholder="Choose Size"
 							data={['5', '6', '7', '8', '9', '10', '11', '12']}
 						/>
 					</Grid.Col>
-					<Grid.Col  mt={'lg'}>
-							<Text fz={'24'}  fw={'500'}>
-								£{data.price}
-							</Text>
+					<Grid.Col mt={'lg'}>
+						<Text fz={'24'} fw={'500'}>
+							£{data.price}
+						</Text>
 					</Grid.Col>
-					<Grid.Col  mt={'lg'}>
+					<Grid.Col mt={'lg'}>
 						<Group grow>
-
-							<Button size={'sm'}  variant={'outline'}>
+							<Button size={'sm'} variant={'outline'}>
 								BUY NOW
 							</Button>
 							<Button size={'sm'} variant={'filled'}>
@@ -104,95 +96,95 @@ export function ProductPage() {
 							</Button>
 						</Group>
 					</Grid.Col>
-					<Grid.Col mt={'xl'}>
-							<Accordion>
-								<Accordion.Item value="premiumDelivery">
-									<Accordion.Control>
-										<Group>
-											<Image src={'https://www.laced.com/packs/static/app/assets/images/rebrand/ui_conceptuals/usp_speed-70f7231d48ddc9ecf0a2.svg'} alt={'delivery icon'}
-												   width={50} height={50}/>
-											<Text>
-												PREMIUM DELIVERY
-											</Text>
-										</Group>
-									</Accordion.Control>
-									<Accordion.Panel>
-										<Text>
-											The Cube items are all available for immediate delivery.
-										</Text>
-										<List>
-											<List.Item>Authenticity guaranteed</List.Item>
-											<List.Item>Our fastest delivery option</List.Item>
-											<List.Item>Order before 7am for next-day delivery</List.Item>
-										</List>
-									</Accordion.Panel>
-								</Accordion.Item><Accordion.Item value="2">
+					<Grid.Col mt={'xxl'}>
+						<Accordion>
+							<Accordion.Item value="premiumDelivery">
 								<Accordion.Control>
 									<Group>
-										<Image src={'https://www.laced.com/packs/static/app/assets/images/rebrand/ui_conceptuals/usp_authenticity-925cecbe4784dbeae21a.svg'} alt={'authenticity icon'}
-											   width={50} height={50}/>
-										<Text>
-											AUTHENTICATED
-										</Text>
+										<Image
+											src={'https://www.laced.com/packs/static/app/assets/images/rebrand/ui_conceptuals/usp_speed-70f7231d48ddc9ecf0a2.svg'}
+											alt={'delivery icon'}
+											width={36}
+											height={36}
+										/>
+										<Text>PREMIUM DELIVERY</Text>
 									</Group>
 								</Accordion.Control>
 								<Accordion.Panel>
-									<Text>
-										Each item is carefully checked by our authentication team to guarantee authenticity.
-									</Text>
-								</Accordion.Panel>
-							</Accordion.Item><Accordion.Item value="3">
-								<Accordion.Control>
-									<Group>
-										<Image src={'https://www.laced.com/packs/static/app/assets/images/rebrand/ui_conceptuals/usp_new_unused-b9244567dbc2002bce10.svg'} alt={'sustainability icon'}
-											   width={50} height={50}/>
-										<Text>
-											BRAND NEW & UNUSED
-										</Text>
-									</Group>
-								</Accordion.Control>
-								<Accordion.Panel>
-									<Text>
-										Every item is brand new, unused and in original packaging.
-									</Text>
+									<Text>The Cube items are all available for immediate delivery.</Text>
+									<List>
+										<List.Item>Authenticity guaranteed</List.Item>
+										<List.Item>Our fastest delivery option</List.Item>
+										<List.Item>Order before 7am for next-day delivery</List.Item>
+									</List>
 								</Accordion.Panel>
 							</Accordion.Item>
-							</Accordion>
+							<Accordion.Item value="2">
+								<Accordion.Control>
+									<Group>
+										<Image
+											src={'https://www.laced.com/packs/static/app/assets/images/rebrand/ui_conceptuals/usp_authenticity-925cecbe4784dbeae21a.svg'}
+											alt={'authenticity icon'}
+											width={36}
+											height={36}
+										/>
+										<Text>AUTHENTICATED</Text>
+									</Group>
+								</Accordion.Control>
+								<Accordion.Panel>
+									<Text>Each item is carefully checked by our authentication team to guarantee authenticity.</Text>
+								</Accordion.Panel>
+							</Accordion.Item>
+							<Accordion.Item value="3">
+								<Accordion.Control>
+									<Group>
+										<Image
+											src={'https://www.laced.com/packs/static/app/assets/images/rebrand/ui_conceptuals/usp_new_unused-b9244567dbc2002bce10.svg'}
+											alt={'sustainability icon'}
+											width={36}
+											height={36}
+										/>
+										<Text>BRAND NEW & UNUSED</Text>
+									</Group>
+								</Accordion.Control>
+								<Accordion.Panel>
+									<Text>Every item is brand new, unused and in original packaging.</Text>
+								</Accordion.Panel>
+							</Accordion.Item>
+						</Accordion>
 					</Grid.Col>
-					<Grid.Col mt={'xxl'}>
-							<Title order={4}>
-								Description
-							</Title>
-							<Text>
-								{data.description}
-							</Text>
+				</Grid>
+			</Grid.Col>
+			<Grid.Col span={12}>
+				<Grid>
+					<Grid.Col mt={'xl'} span={{ base: 12, lg: 8 }} className={classes.productDescription}>
+						<Title order={4}>Description</Title>
+						<Text>{data.description}</Text>
 					</Grid.Col>
-					<Grid.Col  mt={'xxl'}>
-							<Title order={4}>
-								Details
-							</Title>
-							<Flex justify={'space-between'} mt={'sm'}>
-								<Text>Brand</Text>
-								<Text>{data.brand}</Text>
-							</Flex>
-							<Divider my="md"/>
-							<Flex justify={'space-between'}>
-								<Text>Category</Text>
-								<Text>{data.category}</Text>
-							</Flex>
-							<Divider my="md"/>
-							<Flex justify={'space-between'}>
-								<Text>Year released</Text>
-								<Text>{data.yearReleased}</Text>
-							</Flex>
-							<Divider my="md"/>
-							<Flex justify={'space-between'}>
-								<Text>Colour</Text>
-								<Text>{data.colour}</Text>
-							</Flex>
+					<Grid.Col mt={'xl'} span={{ base: 12, lg: 4 }} className={classes.productSecondGrid}>
+						<Title order={4}>Details</Title>
+						<Flex justify={'space-between'} mt={'sm'}>
+							<Text>Brand</Text>
+							<Text>{data.brand}</Text>
+						</Flex>
+						<Divider my="md" />
+						<Flex justify={'space-between'}>
+							<Text>Category</Text>
+							<Text>{data.category}</Text>
+						</Flex>
+						<Divider my="md" />
+						<Flex justify={'space-between'}>
+							<Text>Year released</Text>
+							<Text>{data.yearReleased}</Text>
+						</Flex>
+						<Divider my="md" />
+						<Flex justify={'space-between'}>
+							<Text>Colour</Text>
+							<Text>{data.colour}</Text>
+						</Flex>
 					</Grid.Col>
 				</Grid>
 			</Grid.Col>
 		</Grid>
-	)
+	);
 }

@@ -38,8 +38,8 @@
 }
 
 .productSelectImage {
-	width: 88px;
-	height: 88px;
+	width: 96px;
+	height: 96px;
 	cursor: pointer;
 }
 
@@ -48,5 +48,12 @@
 	padding: 0 var(--mantine-spacing-xl);
 	@media(min-width: 1200px) {
 		padding-left: 40px;
+	}
+}
+
+.productDescription {
+	padding: 0 var(--mantine-spacing-xl);
+	@media(min-width: 1200px) {
+		padding: 0;
 	}
 }
