@@ -114,12 +114,15 @@
 }
 
 .textInput {
-	border: 2px solid var(--mantine-color-neutral-0);
+	border: 1px solid var(--mantine-color-neutral-0);
 	border-radius: 0;;
-	background-color: var(--mantine-color-neutral-1);
+	background-color: transparent;
 }
 
 .select {
+	border: 1px solid var(--mantine-color-neutral-0);
+	border-radius: 0;;
+	background-color: transparent;
 	&[data-size='sm'] {
 		& .label {
 			font-size: 20px;

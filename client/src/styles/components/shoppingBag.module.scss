@@ -1,0 +1,22 @@
+
+
+
+
+.shoppingBagContainer {
+	max-width: 720px;
+	//height: inherit;
+	margin: 0 auto;
+	padding: 10% 0;
+
+	@media(min-width: 768px) {
+		padding: 5%;
+	}
+
+	@media(min-width: 1024px) {
+		padding: 5% 0;
+	}
+}
+
+.cardProductImage {
+	width: 80px;
+}

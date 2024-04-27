@@ -61,6 +61,10 @@ export const transform = (data: any, dir: string): Config => {
 			cli: {migrationsDir: `${dir}/../api/entity/migrations/`},
 			migrationsRun: false
 		},
+		gcp: {
+			projectId: data['GCP_PROJECT_ID'],
+			keyJson: data['GCP_KEY_JSON']
+		},
 		system: {
 			account: {
 				username: data['SYSTEM_ACCOUNT_USERNAME'],

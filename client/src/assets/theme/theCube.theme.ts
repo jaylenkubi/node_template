@@ -91,7 +91,7 @@ export const appTheme: any = createTheme({
 		}),
 		Select: Select.extend({
 			classNames:{
-				root: classes.select,
+				input: classes.select,
 			}
 		})
 		// Button: {

@@ -32,7 +32,7 @@ export function Header() {
 						<Button className={classes.badgeSection} variant={'subtle'} size={'sm'} onClick={() => navigate('/auth/sign-up')}><Text>Sign up</Text></Button>
 						<Button className={classes.badgeSection} variant={'subtle'} size={'sm'} onClick={() => navigate('/auth/login')}><Text>Log in</Text></Button>
 						<FontAwesomeIcon icon={faSearch} />
-						<FontAwesomeIcon icon={faShoppingCart}/>
+						<FontAwesomeIcon icon={faShoppingCart} onClick={() => navigate('/shopping-bag')}/>
 					</Group>
 
 				</Flex>

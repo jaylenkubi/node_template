@@ -36,10 +36,15 @@ export type SystemAccountConfig = {
 	_id: number;
 }
 
+export type GcpConfig = {
+	projectId: string;
+	keyJson: any
+}
 
 export type Config = {
 	env: string;
 	jwt: JwtConfig;
+	gcp: GcpConfig;
 	typeOrm: TypeOrmConfig;
 	port: number;
 	encryption: EncryptionConfig

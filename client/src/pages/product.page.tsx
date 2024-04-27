@@ -73,11 +73,11 @@ export function ProductPage() {
 						</div>
 					</Grid.Col>
 					<Grid.Col mt={'lg'}>
+						<Text>Select size</Text>
 						<Select
 							styles={{ label: { fontSize: '14px', fontWeight: '400', borderRadius: '0' } }}
 							size={'sm'}
-							label="Select Size"
-							placeholder="Choose Size"
+							placeholder={'Select size'}
 							data={['5', '6', '7', '8', '9', '10', '11', '12']}
 						/>
 					</Grid.Col>
