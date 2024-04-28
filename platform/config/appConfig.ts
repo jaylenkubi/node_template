@@ -13,11 +13,12 @@ import {InternalServerError, RoutingControllersOptions} from "routing-controller
 import {startServer} from "../server";
 import {Config} from "./config.type";
 import {logger} from "../helper/logger";
+import {GoogleStorageController} from "../controllers/googleStorage.controller";
 
 
 export const appConfig: () => RoutingControllersOptions = () => ({
 	routePrefix: "/v1",
-	controllers: [UserController(), AuthController(), GenericTokenController(), SneakerController(), BrandController(), FavouriteController(), SizeController(), SneakerImageController(), CategoryController()],
+	controllers: [UserController(), AuthController(), GenericTokenController(), SneakerController(), BrandController(), FavouriteController(), SizeController(), SneakerImageController(), CategoryController(), GoogleStorageController()],
 	cors: true,
 	middlewares: [TransactionMiddleware, ErrorMiddleware]
 })

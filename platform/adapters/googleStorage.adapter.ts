@@ -2,16 +2,16 @@ import {Storage} from "@google-cloud/storage"
 import axios from 'axios';
 
 
-
-
 export class GoogleStorageAdapter {
 	storage: any
+
 	constructor() {
-		 this.storage = new Storage({
+		this.storage = new Storage({
 			projectId: process.env.PROJECT_ID,
-			keyFilename: 
-		 })
+			keyFilename: './../../docker-backend-container-sa-key.json'
+		})
 	}
+
 	public async uploadFile(bucketName: string, filePath: string, fileName: string, isPublicVisible: boolean) {
 		const bucket = this.storage.bucket(bucketName)
 
@@ -27,7 +27,7 @@ export class GoogleStorageAdapter {
 	public async uploadImageFromUrl(bucketName: string, imageUrl: string, fileName: string, isPublicVisible: boolean) {
 		const bucket = this.storage.bucket(bucketName);
 
-		const response = await axios.get(imageUrl, { responseType: 'stream' });
+		const response = await axios.get(imageUrl, {responseType: 'stream'});
 
 		const options = {
 			destination: fileName,
