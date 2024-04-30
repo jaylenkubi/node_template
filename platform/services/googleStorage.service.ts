@@ -11,7 +11,7 @@ export class GoogleStorageService {
 		this.adapter = new GoogleStorageAdapter()
 	}
 
-	uploadImageFromUrl = async (fileLocation: string, fileName: string, isPublicVisible: boolean, imageUrl: string ) => {
-		return this.adapter.uploadImageFromUrl(fileLocation, imageUrl, fileName, isPublicVisible)
+	uploadImageFromUrl = async (fileLocation: string, fileName: string, imageUrl: string ): Promise<any> => {
+		return await this.adapter.uploadImageFromUrl(fileLocation, imageUrl, fileName)
 	}
 }

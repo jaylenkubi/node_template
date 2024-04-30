@@ -23,7 +23,6 @@ export const getOrSetTransactionId = (request: any) => {
 	Container.of(transactionId).set(TRANSACTION_TOKEN, transactionId);
 };
 
-@Middleware({ type: 'before', priority: 1000 })
 export class TransactionMiddleware implements ExpressMiddlewareInterface {
 	use(request: Request, _response: Response, next: (err?: any) => any): void {
 		logger.info(`HEADERS: ${JSON.stringify(request.headers)}`);
